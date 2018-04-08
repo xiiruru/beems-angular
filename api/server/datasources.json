@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 5432,
+    "url": "",
+    "database": "beems",
+    "password": "admin",
+    "name": "db",
+    "user": "postgres",
+    "connector": "postgresql"
+  }
+}
