@@ -1,0 +1,10 @@
+<h1> Assets </h1>
+<ul *ngIf="assets.length">
+	<div *ngFor="let asset of assets">
+		<p> ID: {{asset.id}} </p> 
+		<p> Asset Name: {{asset.name}} </p>
+		<p> Asset Description: {{asset.description}} </p>
+		<p> Asset Type: {{asset.type}} </p>
+		<p> Asset Remark: {{asset.remark}} </p>
+	</div>
+</ul>
