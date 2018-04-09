@@ -1,0 +1,119 @@
+.container
+{
+    display: grid;
+    background: #fff;  
+    padding-top: 2em;
+    width: 40cm;
+    margin-top: 3em;
+    margin-bottom: 1em;
+}
+
+img
+{
+    width: 30%;
+    margin-left: 8em;
+    margin-right: 13em;
+    margin-top: 2em;
+    float: left;
+}
+
+p
+{
+    font-family: 'Trebuchet MS';
+    color: grey;
+    text-align: center;
+    margin-right: 5em;
+    margin-bottom: 2em;
+}
+
+h2
+{
+    font-family: 'Gill Sans';
+    text-align: right;
+    margin-right: 8em;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+input 
+{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    width: 8cm;
+    margin-left: 4em;
+}
+
+.form
+{
+    position: relative;
+    margin-bottom: 3em;
+}
+
+.form input
+{
+    text-indent: 30px;
+    font-family: 'Trebuchet MS'; 
+    color: gray;
+}
+
+.form .fa-user
+{
+    position: absolute;
+    top: 10px;
+    left: 65px;
+    color: gray;
+}
+
+.form .fa-envelope
+{
+    position: absolute;
+    top: 10px;
+    left: 65px;
+    color: gray;
+}
+
+.form .fa-lock
+{
+    position: absolute;
+    top: 10px;
+    left: 65px;
+    color: gray;
+}
+
+button
+{
+    background-color: #404B69;
+    color: white;
+    margin-left: 10em;
+    font-family: 'Trebuchet MS';
+    border-radius: 30px;
+    width: 25%;
+    height: 35px;
+    margin-bottom: 2em;
+}
+
+.account
+{
+    padding-bottom: 4em;
+}
+
+.account p
+{
+    display: inline;
+    color: black;
+    font-size: 13px;
+    margin-left: 57em;
+    margin-bottom: 5em;
+}
+
+.account a
+{  
+    color: orange;
+    font-size: 13px;
+    margin-bottom: 3em;
+    margin-left: 0.5em;
+    font-weight: bold;
+}
