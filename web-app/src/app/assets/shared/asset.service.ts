@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 
 import { Asset } from './asset';
 import { Observable } from 'rxjs/Observable';
@@ -14,6 +13,8 @@ const httpOptions = {
 @Injectable()
 export class AssetService {
 
+  selectedAsset : Asset;
+
   constructor(private http: HttpClient) { }
 
   //HTTP GET request - Retrieve assets information from datasource
@@ -21,6 +22,15 @@ export class AssetService {
   	let url = "http://localhost:3000/api/assets";
 
   	return this.http.get<Asset[]>(url, httpOptions);
+  }
+
+  //HTTP POST request - Insert assets information
+  insertAsset(asset : Asset) {
+  	let url = "http://localhost:3000/api/assets";
+  	var body = JSON.stringify(asset);
+  	console.log(body);
+
+  	return this.http.post(url, body, httpOptions); //return observable 
   }
 
 }

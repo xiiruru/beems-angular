@@ -11,8 +11,6 @@ export class AuthService {
   //Register User 
   signupUser(user) {
   	let url = "http://localhost:3000/api/Users";
-
-  	this.router.navigate(['']); //return to homepage
   	return this.http.post<any>(url, user); //return observable 
   }
 
@@ -20,9 +18,9 @@ export class AuthService {
   //Login User 
   loginUser(user) {
   	let url = "http://localhost:3000/api/Users/login";
-
-  	this.router.navigate(['']); //return to homepage
   	return this.http.post<any>(url, user); //return observable 
   }
+
+  
 
 }
