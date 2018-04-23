@@ -1,0 +1,18 @@
+/**
+ * Blockchain modeling for BEEMS.
+ *
+ * Angular 5 program do everything.
+ */
+
+namespace org.bit.beems
+
+participant User identified by id {
+  o String id
+  o String name
+}
+
+asset AssetLocation identified by assetID {
+  o String assetID
+  o String gpsLocation
+  o String timestamp
+}
