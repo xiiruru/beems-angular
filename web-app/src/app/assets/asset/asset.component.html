@@ -1,25 +1,28 @@
 <form class="asset-form" #assetForm="ngForm" (ngSubmit)="onSubmit(assetForm)">
 	<h1> Create Asset </h1>
-	<input type="hidden" name="assetID" #assetID="ngModel" [(ngModel)] = "assetService.selectedAsset.id">
+	<input type="hidden" name="id" #id="ngModel" [(ngModel)]="assetService.selectedAsset.id">
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			<input class="form-control" type="text" name="assetName" #assetName="ngModel" [(ngModel)]="assetService.selectedAsset.name" placeholder="Name" required>
-			<div class="validation-error" *ngIf="assetName.invalid && assetName.touched">This field is required!</div>
+			<input class="form-control" type="text" id="name" name="name" #name="ngModel" 
+			[(ngModel)]="assetService.selectedAsset.name" placeholder="Name" required>
+			<div class="validation-error" *ngIf="name.invalid && name.touched">This field is required!</div>
 		</div>
 		<div class="form-group col-md-6">
-			<input class="form-control" type="text" name="assetType" #assetType="ngModel" [(ngModel)]="assetService.selectedAsset.type" placeholder="Type" required>
-			<div class="validation-error" *ngIf="assetType.invalid && assetType.touched">This field is required!</div>
+			<input class="form-control" type="text" id="type" name="type" #type="ngModel" 
+			[(ngModel)]="assetService.selectedAsset.type" placeholder="Type" required>
+			<div class="validation-error" *ngIf="type.invalid && type.touched">This field is required!</div>
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-12">
-			<textarea class="form-control" type="textarea" name="assetDesc" #assetDesc="ngModel" [(ngModel)]="assetService.selectedAsset.description" placeholder="Description" required></textarea>
-			<div class="validation-error" *ngIf="assetDesc.invalid && assetDesc.touched">This field is required!</div>
+			<textarea class="form-control" type="textarea" id="description" name="description" #description="ngModel" [(ngModel)]="assetService.selectedAsset.description" placeholder="Description" required></textarea>
+			<div class="validation-error" *ngIf="description.invalid && description.touched">This field is required!</div>
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-12">
-			<textarea class="form-control" name="assetRemark" #assetRemark="ngModel" [(ngModel)]="assetService.selectedAsset.remark" placeholder="Remark" ></textarea>
+			<textarea class="form-control" id="remark" name="remark" #remark="ngModel" 
+			[(ngModel)]="assetService.selectedAsset.remark" placeholder="Remark" ></textarea>
 		</div>
 	</div>
 	<div class="form-row">

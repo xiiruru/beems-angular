@@ -1,5 +1,5 @@
 <h1> Assets </h1>
-<table *ngIf="assets.length" class="table table-sm table-hover">
+<table *ngIf="assetService.assets.length" class="table table-sm table-hover">
 	<tr>
 		<td> ID </td> 
 		<td> Name </td>
@@ -8,17 +8,17 @@
 		<td> Remark </td>
 		<td class="action"> Action </td>
 	</tr>
-	<tr *ngFor="let asset of assets">
+	<tr *ngFor="let asset of assetService.assets">
 		<td class="data"> {{asset.id}} </td> 
 		<td class="data"> {{asset.name}} </td>
 		<td class="data"> {{asset.type}} </td>
 		<td class="data"> {{asset.description}} </td>
 		<td class="data"> {{asset.remark}} </td>
 		<td> 
-			<a class="btn text-info" (click)=showForEdit(asset)>
+			<a class="btn text-info" (click)="showForEdit(asset)">
 				<i class="far fa-edit"></i>
 			</a>
-			<a class="btn text-danger">
+			<a class="btn text-danger" (click)="onDelete(asset.id)">
 				<i class="fas fa-trash-alt"></i>
 			</a>
 		</td>
