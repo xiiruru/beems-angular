@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "project"
+    "name": "beems-app"
   },
   "apps": [
     {
@@ -11,9 +11,6 @@
         "assets",
         "favicon.ico"
       ],
-      "addons": [
-        "./node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
-      ],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -22,8 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss",
-        "../node_modules/ngx-toastr/toastr.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
@@ -32,37 +29,38 @@
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
+        "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
     }
   ],
+  "addons": [],
+  "packages": [],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
     }
   },
-  "lint": [
-    {
-      "project": "src/tsconfig.app.json",
-      "exclude": "/node_modules/"
-    },
-    {
-      "project": "src/tsconfig.spec.json",
-      "exclude": "/node_modules/"
-    },
-    {
-      "project": "e2e/tsconfig.e2e.json",
-      "exclude": "/node_modules/"
-    }
-  ],
   "test": {
     "karma": {
       "config": "./karma.conf.js"
     }
   },
   "defaults": {
-    "styleExt": "scss",
-    "component": {}
+    "styleExt": "css",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
   }
 }
