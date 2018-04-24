@@ -38,5 +38,9 @@
   "asset": {
     "dataSource": "db",
     "public": true
+  },
+  "Sequence": {
+    "dataSource": "db",
+    "public": false
   }
 }
