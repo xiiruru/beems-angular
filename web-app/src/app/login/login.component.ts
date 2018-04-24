@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   		.subscribe(
 	  			res => { 
 		  			console.log(res); console.log(res.created); 
-		  			localStorage.setItem('userToken', res.id); //store token in browser local storage
+		  			localStorage.setItem('userToken', JSON.stringify(res.id)); //store token in browser local storage
 		  			this.router.navigate(['/dashboard']); 
 	  			} , //If success, show response
 	  			err => 
