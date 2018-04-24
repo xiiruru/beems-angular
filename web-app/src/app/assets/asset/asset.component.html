@@ -3,11 +3,13 @@
 	<input type="hidden" name="id" #id="ngModel" [(ngModel)]="assetService.selectedAsset.id">
 	<div class="form-row">
 		<div class="form-group col-md-6">
+			<label>Name</label>
 			<input class="form-control" type="text" id="name" name="name" #name="ngModel" 
 			[(ngModel)]="assetService.selectedAsset.name" placeholder="Name" required>
 			<div class="validation-error" *ngIf="name.invalid && name.touched">This field is required!</div>
 		</div>
 		<div class="form-group col-md-6">
+			<label>Type</label>
 			<input class="form-control" type="text" id="type" name="type" #type="ngModel" 
 			[(ngModel)]="assetService.selectedAsset.type" placeholder="Type" required>
 			<div class="validation-error" *ngIf="type.invalid && type.touched">This field is required!</div>
@@ -15,12 +17,14 @@
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-12">
+			<label>Description</label>
 			<textarea class="form-control" type="textarea" id="description" name="description" #description="ngModel" [(ngModel)]="assetService.selectedAsset.description" placeholder="Description" required></textarea>
 			<div class="validation-error" *ngIf="description.invalid && description.touched">This field is required!</div>
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-12">
+			<label>Remark</label>
 			<textarea class="form-control" id="remark" name="remark" #remark="ngModel" 
 			[(ngModel)]="assetService.selectedAsset.remark" placeholder="Remark" ></textarea>
 		</div>
