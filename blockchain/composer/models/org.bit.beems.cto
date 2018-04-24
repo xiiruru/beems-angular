@@ -11,7 +11,8 @@ participant User identified by id {
   o String name
 }
 
-asset AssetLocation identified by assetID {
+asset AssetLocation identified by id {
+  o String id
   o String assetID
   o String gpsLocation
   o String timestamp
