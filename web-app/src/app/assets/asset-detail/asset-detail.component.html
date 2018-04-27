@@ -1,7 +1,7 @@
 <h1> Assets </h1>
 <table *ngIf="assetService.assets.length" class="table table-sm table-hover">
 	<tr>
-		<td> ID </td> 
+		<td style="column-width: 2em;"> ID </td> 
 		<td> Name </td>
 		<td> Type</td>
 		<td> Description </td>
@@ -9,7 +9,7 @@
 		<td class="action"> Action </td>
 	</tr>
 	<tr *ngFor="let asset of assetService.assets">
-		<td class="data"> {{asset.id}} </td> 
+		<td style="column-width: 2em;" class="data"> {{asset.id}} </td> 
 		<td class="data"> {{asset.name}} </td>
 		<td class="data"> {{asset.type}} </td>
 		<td class="data"> {{asset.description}} </td>

@@ -34,4 +34,16 @@ export class LoginComponent implements OnInit {
   			)
   }
 
+  sendtoHome() {
+    this.router.navigate(['home']);
+  }
+  
+  sendtoSignup() {
+    this.router.navigate(['signup']);
+  }
+
+  sendtoReset(){
+    this.router.navigate(['reset-password']);
+  }
+
 }

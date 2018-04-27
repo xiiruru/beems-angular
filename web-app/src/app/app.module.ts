@@ -21,6 +21,7 @@ import { AssetDetailComponent } from './assets/asset-detail/asset-detail.compone
 //Services
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 const appRoutes: Routes = [
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
 	{path: 'asset', component: AssetsComponent},
 	{path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'reset-password', component: PasswordResetComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]}
 ];
 
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     DashboardComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

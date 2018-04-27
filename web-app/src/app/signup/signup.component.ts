@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ export class SignupComponent implements OnInit {
 
   registerUserData = {}; //register user object
 
-  constructor(private _auth:AuthService) { }
+  constructor(private router: Router, private _auth:AuthService) { }
 
   ngOnInit() {
   }
@@ -22,5 +23,13 @@ export class SignupComponent implements OnInit {
   			res => console.log(res), //If success, show response
   			err => console.log(err) //If fail, show error
   			)
+  }
+
+   sendtoLogin(){
+    this.router.navigate(['login']);
+  }
+
+  sendtoHome(){
+    this.router.navigate(['home']);
   }
 }

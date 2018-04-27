@@ -1,3 +1,68 @@
-<p>
-  Welcome to the home page!
-</p>
+<div class="parallax">
+  <ul>
+    <li><a class="active">BEEMS</a></li>
+    <li><a class="home" href="#aboutApp">About</a></li>
+    <li><a class="home" href="#feature">Features</a></li>
+    <li class="right"><button (click)="sendtoLogin()" class="login">Sign In</button></li>
+  </ul>
+
+  <div class="title">
+  <h1>Trusted Asset Managing & Tracking Solution</h1>
+  <h5>BEEMS unites with high security and advanced technology to track your assets with less effort</h5>
+  <button (click)="sendtoLogin()" class="started">Get Started</button>
+  </div>
+</div>
+
+<div class="about">
+    <img class="image-about" src="/assets/tracker.png">
+    <h1 id="aboutApp">BEEMS</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
+      incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut <br>
+      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in <br>
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint <br>
+      occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim <br>
+      id est laborum.</p>
+    <a (click)="sendtoLogin()"><span>Getting Started > </span></a>
+</div>
+
+<div class="parallax2"></div>
+
+<h2 id="feature">Why BEEMS?</h2>
+<div class="why">
+    <img class="image-why" src="/assets/transfer.png">
+    <h4>User Friendly</h4>
+    <br> <br>
+    <p>You'll know how easy and fast to submit your assets.</p>
+    <br>
+    <p>Drag and drop or snap, put some details, and you are done!</p>
+    <br>
+    <p>It's just super convenient.</p>
+    <br> <br>
+    <a class="getting-started" (click)="sendtoLogin()"><span>Getting Started > </span></a>    
+</div>
+
+<div class="why2">
+    <img class="image-why2" src="/assets/track.png">
+    <h4>Get Updated on Your Assets</h4>
+    <br>  
+    <p>You don't have to worry on your assets.
+    <br>
+    Every update you make will be stored in our system so you can located easily.</p>
+    <a (click)="sendtoLogin()"><span>Getting Started > </span></a>    
+</div>
+
+<div class="why">
+    <i class="fa fa-briefcase"></i>
+    <h4>All secured</h4>
+    <br> <br>
+    <p>Your information is all in a safe place.</p>
+    <br>
+    <p>Only you and you that knows your assets. No one else.</p>
+    <br> <br>
+    <a class="getting-started" (click)="sendtoLogin()"><span>Getting Started > </span></a>    
+</div>
+
+<div class="footer">
+  <p>Design by <i>JNF</i>. Maintained by the <i>core team</i> #bit</p>
+</div>

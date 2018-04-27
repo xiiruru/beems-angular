@@ -1,0 +1,259 @@
+.parallax 
+{
+    /* The image used */
+    background-image: url('/assets/browse.jpg');
+
+    /* Set a specific height */
+    min-height: 630px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax2
+{
+    margin-top: 42em;
+
+    /* The image used */
+    background-image: url('/assets/phone.jpg');
+
+    /* Set a specific height */
+    min-height: 350px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.active
+{
+    font-weight: bold;
+}
+
+.right
+{
+    float: right;
+    margin-right: 1.5em;
+    margin-top: 0.5em;
+}
+
+ul 
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.login
+{
+    margin-right: 2.5em;
+
+    width: 100%;
+    padding: 0.5em;
+    background-color: transparent;
+    border-color: black;
+    border-radius: 20px;
+    transition: all 0.5s;
+    outline: none;
+    cursor: pointer;
+}
+
+.login:hover
+{
+    border-color: #E37222;
+    background-color: #E37222;
+    color: #fff;
+}
+
+.started
+{
+    margin-top: 1.5em;
+    margin-right: 2.5em;
+
+    width: 15%;
+    padding: 0.5em;
+    background-color: transparent;
+    border-color: black;
+    border-radius: 20px;
+    transition: all 0.5s;
+    outline: none;
+    cursor: pointer;
+}
+
+.started:hover
+{
+    border-color: #E37222;
+    background-color: #E37222;
+    color: #fff;
+}
+
+.title
+{
+    text-align: center;
+    margin-top: 5em;
+}
+
+h1
+{
+    font-size: 47px;
+}
+
+.about
+{
+    padding-left: 7em;
+    margin-top: 11em;
+
+    width: 100%;
+    float: left;
+    font-family: Tahoma;
+}
+
+.about h1
+{
+    display: inline-block;
+}
+
+h2
+{
+    padding-left: 3.5em;
+    margin-top: 2em;
+}
+
+.getting-started
+{
+    margin-left: 9em;
+}
+
+a span
+{
+    text-decoration: none;
+    color: rgb(51, 144, 187);
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+a span:after 
+{
+    content: '>';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+a:hover span
+{
+    padding-right: 10px;
+}
+  
+a:hover span:after 
+{
+    opacity: 1;
+    right: 0;
+}
+
+.about p
+{
+    margin-top: 2em;
+    margin-left: 0.2em;
+}
+
+.image-about
+{
+    float: right;
+    margin-bottom: 5em;
+    margin-right: 10em;
+}
+
+.image-why
+{
+    float: left;
+}
+
+.image-why2
+{
+    float: right;
+    margin-right: 7em;
+}
+
+.why
+{
+    padding-left: 7em;
+    margin-top: 5em;
+    margin-bottom: 5em;
+
+    width: 100%;
+    float: left;
+    font-family: Tahoma;
+} 
+
+.why2
+{
+    padding-left: 7em;
+    margin-top: 5em;
+    margin-bottom: 5em;
+
+    width: 100%;
+    float: left;
+    font-family: Tahoma;
+}
+
+.why h4
+{
+    display: inline;
+    padding-left: 6em;
+}
+
+.why p
+{
+    display: inline;
+    padding-left: 9.1em;
+}
+
+.fa-briefcase
+{
+    float: left;
+    font-size: 250px;
+}
+
+.footer
+{
+    display: inline-block;
+    background-color: lightgray;
+    height: 70px;
+    width: 100%;
+}
+
+.footer p
+{
+    margin-left: 3em;
+    margin-top: 2em;
+    color: #fff;
+}
+
+.footer i
+{
+    color: #000;
+}
