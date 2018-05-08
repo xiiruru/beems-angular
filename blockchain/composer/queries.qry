@@ -1,0 +1,6 @@
+query collectUpdateBEEMSAssetTransactionByID {
+  description: "Select UpdateBEEMSAsset transactions by ID in the blockchain"
+  statement:
+    SELECT org.bit.beems.UpdateBEEMSAsset
+      WHERE (oldBEEMSAssetInfromation.id == _$id)
+}
