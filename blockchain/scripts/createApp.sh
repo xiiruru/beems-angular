@@ -3,7 +3,8 @@
 # Create the application only.
 
 # const
-archive="beems@0.0.1.bna"
+businessNetworkVer=`cat version.txt`
+archive="beems@${businessNetworkVer}.bna"
 
 # Generate the .bna file.
 cd ../composer

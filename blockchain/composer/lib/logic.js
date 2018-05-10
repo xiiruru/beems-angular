@@ -6,9 +6,9 @@
  * @transaction
  */
 async function doUpdateBEEMSAsset(updateBEEMSAsset) {
-    updateBEEMSAsset.oldBEEMSAssetInfromation.assetContentHash = updateBEEMSAsset.assetContentHash;
-    updateBEEMSAsset.oldBEEMSAssetInfromation.currentGPSLocation = updateBEEMSAsset.currentGPSLocation;
+    updateBEEMSAsset.beemsAsset.assetContentHash = updateBEEMSAsset.assetContentHash;
+    updateBEEMSAsset.beemsAsset.currentGPSLocation = updateBEEMSAsset.currentGPSLocation;
 
     let assetRegistry = await getAssetRegistry('org.bit.beems.BEEMSAsset');
-    await assetRegistry.update(updateBEEMSAsset.oldBEEMSAssetInfromation);
+    await assetRegistry.update(updateBEEMSAsset.beemsAsset);
 }

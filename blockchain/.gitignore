@@ -1,6 +1,6 @@
 /scripts/composer-logs
-/fabric-tools/composer-logs
+/fabric-dev-servers
 /composer/composer-logs
-/composer/beems@0.0.1.bna
+/composer/beems@*.bna
 /composer/networkadmin.card
 /composer/beems-app/node_modules

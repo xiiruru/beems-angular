@@ -19,8 +19,9 @@ asset BEEMSAsset identified by id {
 }
 
 transaction UpdateBEEMSAsset {
-  --> BEEMSAsset oldBEEMSAssetInfromation
+  --> BEEMSAsset beemsAsset
   
+  o String assetID
   o String assetContentHash
   o String currentGPSLocation
 }

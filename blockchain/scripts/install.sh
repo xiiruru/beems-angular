@@ -1,37 +1,44 @@
 #!/bin/sh
 
 # Recreate the fabric network from scratch completely.
-# Change the FABRIC_START_TIMEOUT to a large value if failing like 60 seconds
+# Change the FABRIC_START_TIMEOUT to a large value if failing to like 60 seconds
 # Single channel, single peer.
 
 # set the environment
-export FABRIC_VERSION=hlfv1;
+export FABRIC_VERSION=hlfv11;
 export FABRIC_START_TIMEOUT=30;
 
 # constants
-adminNetwork="admin@beems"
-peerAdmin="PeerAdmin@hlfv1"
+businessNetworkVer=`cat version.txt`
+archive="beems@${businessNetworkVer}.bna"
 businessNetworkName="beems"
 adminName="admin"
 adminPw="adminpw"
-archive="beems@0.0.1.bna"
+adminNetwork="${adminName}@${businessNetworkName}"
+peerAdmin="PeerAdmin@hlfv1"
 adminNetworkCard="networkadmin.card"
 devFolder="composer"
 
 # uninstall whatever previous version of this fabric and its cards available.
 ./uninstall.sh
 
-# start network
-cd ../fabric-tools
+# download and start network
+cd ../
+mkdir ./fabric-dev-servers
+cd ./fabric-dev-servers
+curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
+tar -xvf fabric-dev-servers.tar.gz
 ./downloadFabric.sh
-./createFabric.sh
+./startFabric.sh
 ./createPeerAdminCard.sh
 
-# install and run
+# make the app
 cd ../scripts
 ./createApp.sh
+
+# install and run
 cd ../${devFolder}
-composer runtime install --card ${peerAdmin} --businessNetworkName ${businessNetworkName}
-composer network start --card ${peerAdmin} --networkAdmin ${adminName} --networkAdminEnrollSecret ${adminPw} --archiveFile ${archive} --file ${adminNetworkCard}
+composer network install --card ${peerAdmin} --archiveFile ${archive}
+composer network start --networkName ${businessNetworkName} --networkVersion ${businessNetworkVer} --networkAdmin ${adminName} --networkAdminEnrollSecret ${adminPw} --card ${peerAdmin} --file ${adminNetworkCard}
 composer card import --file ${adminNetworkCard}
 composer network ping --card ${adminNetwork}
