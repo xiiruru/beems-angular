@@ -4,6 +4,11 @@
 
 Blockchain-based Enterprise Entity Management System. Using blockchain technologies in asset management context. Project with MIMOS.
 
+By time of writing, the version used are as follows (in case for breaking changes):-
+
+1. Hyperledger Fabric 1.1
+1. Hyperledger Composer 0.19
+
 ## Usage
 
 Everything here assume you are doing it in `terminal` and is in `scripts` folder.
@@ -73,4 +78,4 @@ chmod u+x updateVersion.sh
 
 ## Available commands/queries
 
-REST API is located at `localhost:7777`.
+REST API is located at `localhost:7777` after using `startApp.sh` shell script.

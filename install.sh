@@ -10,8 +10,9 @@ echo "Install the Angular 5 components"
 cd ../web-app
 npm install
 
-echo "Install the blockchain (DEV MODE)"
+echo "Install the blockchain (DEV MODE) and its npm tools"
 cd ../blockchain/scripts
+./npmInstall.sh
 ./install.sh
 
 echo "Done."
