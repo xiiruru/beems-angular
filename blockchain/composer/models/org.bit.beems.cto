@@ -1,7 +1,7 @@
 /**
  * Blockchain modeling for BEEMS.
  *
- * Angular 5 program do everything.
+ * Angular 5 program and Loopback do everything.
  */
 
 namespace org.bit.beems
@@ -11,8 +11,17 @@ participant User identified by id {
   o String name
 }
 
-asset AssetLocation identified by assetID {
+asset BEEMSAsset identified by id {
+  o String id
+
+  o String assetContentHash
+  o String currentGPSLocation
+}
+
+transaction UpdateBEEMSAsset {
+  --> BEEMSAsset beemsAsset
+  
   o String assetID
-  o String gpsLocation
-  o String timestamp
+  o String assetContentHash
+  o String currentGPSLocation
 }

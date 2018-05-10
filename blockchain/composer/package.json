@@ -1,6 +1,6 @@
 {
   "name": "beems",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "description": "Blockchain-based Enterprise Entity Management System. Using blockchain technologies in asset management context. Project with MIMOS.",
   "scripts": {
     "test": "mocha --recursive"

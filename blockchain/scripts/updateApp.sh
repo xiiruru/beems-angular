@@ -2,13 +2,22 @@
 
 # Create and update the application in the fabric network.
 # make sure the fabric network is up before use.
+# ref: https://hyperledger.github.io/composer/latest/tutorials/queries
 
 # const
-archive="beems@0.0.1.bna"
-adminNetwork="admin@beems"
+./updateVersion.sh
+curDir=`pwd`
+businessNetworkVer=`cat version.txt`
+archive="beems@${businessNetworkVer}.bna"
+businessNetworkName="beems"
+adminName="admin"
+peerAdmin="PeerAdmin@hlfv1"
+adminNetwork="admin@${businessNetworkName}"
 
 # Generate the .bna file and update the application in the network.
 ./createApp.sh
 
+# Upgrade the network
 cd ../composer
-composer network update -a ${archive} -c ${adminNetwork}
+composer network install --card ${peerAdmin} --archiveFile ${archive}
+composer network upgrade -c ${peerAdmin} -n ${businessNetworkName} -V ${businessNetworkVer}

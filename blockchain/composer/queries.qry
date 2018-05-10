@@ -1,0 +1,6 @@
+query getTransactionUpdateBEEMSAssetByAssetID {
+  description: "Get all the update transaction done to the asset ID given."
+  statement:
+    SELECT org.bit.beems.UpdateBEEMSAsset
+      WHERE (assetID == _$id)
+}

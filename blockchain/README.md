@@ -10,14 +10,19 @@ Everything here assume you are doing it in `terminal` and is in `scripts` folder
 
 ```bash
 # chmod
+chmod u+x npmInstall.sh
 chmod u+x install.sh
 chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
 chmod u+x updateApp.sh
 chmod u+x uninstall.sh
+chmod u+x updateVersion.sh
 
-# Install.
+# Install the necessary components to start by using npm. [Requires Internet connection]
+./npmInstall.sh
+
+# Install. [Requires Internet connection]
 ./install.sh
 
 # Start the app/fabric-network with REST API. One channel, one peer.
@@ -30,7 +35,7 @@ chmod u+x uninstall.sh
 # Create the app
 ./createApp.sh
 
-# Update the app in the fabric-network when it is up
+# Update the app in the fabric-network when it is up (for developers only). [Requires Internet connection]
 ./updateApp.sh
 
 # Uninstall the app and the fabric-network
@@ -41,14 +46,19 @@ chmod u+x uninstall.sh
 
 ```bash
 # chmod
+chmod u+x npmInstall.sh
 chmod u+x install.sh
 chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
 chmod u+x updateApp.sh
 chmod u+x uninstall.sh
+chmod u+x updateVersion.sh
 
-# For first time or when all else fails (all information will be lost; Hard install).
+# Install the necessary components to start by using npm. [Requires Internet connection]
+./npmInstall.sh
+
+# For first time or when all else fails (almost all information will be lost; Hard install). [Requires Internet connection]
 ./install.sh
 
 # Next time onwards.
