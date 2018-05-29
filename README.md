@@ -9,8 +9,9 @@
 - NPM
 - Loopback
 - Angular-CLI (Currently Angular 5)
+- Expo (for mobile development)
 
-Others are implemented later by the script provided.
+Please download the above before continuing. Others are implemented later by the script provided.
 
 ## Installation
 
