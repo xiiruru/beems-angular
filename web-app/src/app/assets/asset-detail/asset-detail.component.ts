@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Asset } from '../shared/asset';
 import { AssetService } from '../shared/asset.service';
 import { ToastrService } from 'ngx-toastr';
-
+import * as hash from 'json-hash'; //Hash Json Object
 
 @Component({
   selector: 'app-asset-detail',

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { AssetService } from '../shared/asset.service';
 import { ToastrService } from 'ngx-toastr';
-
+import * as hash from 'json-hash'; //Hash Json Object
 
 @Component({
   selector: 'app-asset',
@@ -45,7 +45,8 @@ export class AssetComponent implements OnInit {
 
           this.assetService.assets = res;
           console.log(res);
-
+           //Hash asset
+            //Send to blockchain
           }, err => {
 
           console.log(err);

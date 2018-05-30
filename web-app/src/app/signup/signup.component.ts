@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  registerUserData = {}; //register user object
+  isPwdError:boolean;
+  isBlank:boolean;
+
 
   constructor(private router: Router, private _auth:AuthService) { }
 
@@ -17,12 +20,28 @@ export class SignupComponent implements OnInit {
   }
 
   signUp() {
-  	//console.log(this.registerUserData);
-  	this._auth.signupUser(this.registerUserData)
-  		.subscribe(
-  			res => console.log(res), //If success, show response
-  			err => console.log(err) //If fail, show error
-  			)
+
+    this.isPwdError = false;
+
+  	//console.log(this._auth.registerUserData);
+    //If password matched
+    if(this._auth.registerUserData.password == this._auth.registerUserData.cfmPassword) {
+
+      var body = {
+      realm : this._auth.registerUserData.first_name + " " + this._auth.registerUserData.last_name,
+      email : this._auth.registerUserData.email,
+      password : this._auth.registerUserData.password
+    }
+    console.log(body);
+    
+    this._auth.signupUser(body)
+      .subscribe(
+        res => { console.log(res); this.sendtoLogin();} , //If success, show response
+        err => { console.log(err);} //If fail, show error
+        )
+    }
+    else
+     this.isPwdError = true; //Password not match
   }
 
    sendtoLogin(){

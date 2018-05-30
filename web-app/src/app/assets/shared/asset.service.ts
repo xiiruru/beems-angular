@@ -4,12 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Asset } from './asset';
 import { Observable } from 'rxjs/Observable';
 
+
 //HTTP header
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const url = "http://localhost:3000/api/assets/";
+const dbUrl = "http://localhost:3000/api/assets/"; //Database API Request URL
+//const bcUrl = "http://localhost:7777/api/BEEMSAsset/"; //Blockchain API REquest URL
 
 @Injectable()
 export class AssetService {
@@ -21,7 +23,7 @@ export class AssetService {
 
   //HTTP GET request - Retrieve assets information from datasource
   getAssets():Observable<Asset[]> {
-  	return this.http.get<Asset[]>(url, httpOptions);
+  	return this.http.get<Asset[]>(dbUrl, httpOptions);
   }
 
   //HTTP POST request - Insert assets information
@@ -29,7 +31,7 @@ export class AssetService {
   	var body = JSON.stringify(asset);
   	console.log(body);
 
-  	return this.http.post(url, body, httpOptions); //return observable 
+  	return this.http.post(dbUrl, body, httpOptions); //return observable 
   }
 
   //HTTP PUT request - Update asset information
@@ -37,12 +39,20 @@ export class AssetService {
     var body = JSON.stringify(asset);
     console.log(body);
 
-    return this.http.put(url + id, body, httpOptions);
+    return this.http.put(dbUrl + id, body, httpOptions);
   }
 
   //HTTP DELETE request - Delete asset information
   deleteAsset(id : number) {
-       return this.http.delete(url +  id);
+       return this.http.delete(dbUrl +  id);
+  }
+
+  ////HTTP PUT request - Add QRCode to Asset
+  updateQR(id : number, asset : Asset){
+    var body = JSON.stringify(asset);
+    console.log(body);
+
+    return this.http.put(dbUrl + id, body, httpOptions);
   }
 
 }

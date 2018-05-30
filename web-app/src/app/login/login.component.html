@@ -10,12 +10,12 @@
 				</div>
 				<div class="form">
 					<span class="fa fa-envelope"></span>
-					<input [(ngModel)]="loginUserData.email" type="email" class="form-control" placeholder="Email Address">
+					<input [(ngModel)]="loginUserData.email" name="email" type="email" class="form-control" placeholder="Email Address">
 				</div>
 
 				<div class="form last">
 					<span class="fa fa-lock"></span>
-					<input [(ngModel)]="loginUserData.password" type="password" class="form-control" placeholder="Password">
+					<input [(ngModel)]="loginUserData.password" name="password" type="password" class="form-control" placeholder="Password">
 				</div>
 			<button type="button" (click)=loginUser()>Log In</button>
 			</fieldset>

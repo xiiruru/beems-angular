@@ -6,32 +6,46 @@
     Free forever.</p>
     <form>
         <fieldset>
+          <div *ngIf="isBlank" class="error-message"> 
+            Please fill in the field!
+          </div>
+
+          <div *ngIf="isPwdError" class="error-message"> 
+            Password not matched!
+          </div>
+  
           <div class="form">
             <span class="fa fa-user"></span>
-                <input [(ngModel)]="registerUserData.first_name" type="text" class="form-control" placeholder="First Name">
+                <input class="form-control" [(ngModel)]="_auth.registerUserData.first_name" id="first_name" name="first_name" type="text" class="form-control" placeholder="First Name" #first_name="ngModel" required>
+                <div class="error-message" *ngIf="first_name.invalid && first_name.touched">This field is required!</div>
           </div>
 
           <div class="form">
             <span class="fa fa-user"></span>
-                <input [(ngModel)]="registerUserData.last_name" type="text" class="form-control" placeholder="Last Name">
+                <input class="form-control" [(ngModel)]="_auth.registerUserData.last_name" id="last_name" name="last_name" type="text" class="form-control" placeholder="Last Name" #last_name="ngModel" required>
+                <div class="error-message" *ngIf="last_name.invalid && last_name.touched">This field is required!</div>
           </div>
 
           <div class="form">
               <span class="fa fa-envelope"></span>
-              <input [(ngModel)]="registerUserData.email" type="email" class="form-control" placeholder="Email Address">
+              <input class="form-control" [(ngModel)]="_auth.registerUserData.email" id="email" name="email" type="email" class="form-control" placeholder="Email Address" #email="ngModel" [pattern]="emailPattern" required>
+              <div class="error-message" *ngIf="email.invalid && email.touched">This field is required!</div>
           </div>
       
           <div class="form">
               <span class="fa fa-lock"></span>
-              <input [(ngModel)]="registerUserData.password" type="password" class="form-control" placeholder="Password">
+              <input class="form-control" [(ngModel)]="_auth.registerUserData.password" id="password" name="password" type="password" class="form-control" placeholder="Password" #password="ngModel" required>
+              <div class="error-message" *ngIf="password.invalid && password.touched">This field is required!</div>
           </div>
 
           <div class="form last">
               <span class="fa fa-lock"></span>
-              <input [(ngModel)]="registerUserData.cfmPassword" type="password" class="form-control" placeholder="Confirm Password">
+              <input class="form-control" [(ngModel)]="_auth.registerUserData.cfmPassword" id="cfmPassword" name="cfmPassword" type="password" class="form-control" placeholder="Confirm Password" #cfmPassword="ngModel" required>
+              <div class="error-message" *ngIf="cfmPassword.invalid && cfmPassword.touched">This field is required!</div>
           </div>
-            <button type="button" (click)="signUp()">Sign Up</button>
-            <p class="have-account">Already have an account ?<a (click)="sendtoLogin()">Login</a></p>
+
+          <button type="button" (click)="signUp()">Sign Up</button>
+          <p class="have-account">Already have an account? <a (click)="sendtoLogin()">Login</a></p>
         </fieldset>
       </form>
   </div><br>

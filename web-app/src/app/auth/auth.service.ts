@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { SignUpUser } from '../signup/signup.model';
+
 @Injectable()
 export class AuthService {
+
+  registerUserData : SignUpUser = new SignUpUser(); //register user object
 
   constructor(private http: HttpClient, private router: Router) { }
 
