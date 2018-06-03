@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
 
 import { Asset } from '../shared/asset';
 import { AssetService } from '../shared/asset.service';
-import { ToastrService } from 'ngx-toastr';
 import * as hash from 'json-hash'; //Hash Json Object
 
 @Component({
@@ -13,45 +13,127 @@ import * as hash from 'json-hash'; //Hash Json Object
 
 export class AssetDetailComponent implements OnInit {
 
-  constructor(private assetService : AssetService, private toastr : ToastrService) { }
+  settings = {
+    columns: {
+      id: {
+        title: 'ID',
+        filter: false,
+        editable: false
+      },
+      name: {
+        title: 'Name',
+        filter: false
+      },
+      type: {
+        title: 'Type',
+        filter: false
+      },
+      description: {
+        title: 'Description',
+        filter: false
+      },
+      remark: {
+        title: 'Remarks',
+        filter: false
+      }
+    },
+    edit : {
+      confirmSave: true
+    },
+    delete : {
+      confirmDelete: true
+    }
+  };
+
+  source: LocalDataSource; // add a property to the component
+
+  constructor(private assetService : AssetService) { 
+  }
 
   ngOnInit() {
-  	//do request and get asset's record
-  	this.assetService.getAssets().subscribe(res =>{
-  		this.assetService.assets = res;
-  		console.log(res);
-  	}, err => {
-  		console.log(err);
-  	})
+   this.loadData();
   }
 
-  //Show edit
-  showForEdit(asset: Asset) {
-    this.assetService.selectedAsset = Object.assign({},asset);
-    console.log(this.assetService.selectedAsset);
-  }
-
-  //On delete
-  onDelete(id : number) {
-    if (confirm('Are you sure to delete this record ?') == true) {
-    this.assetService.deleteAsset(id).subscribe(res => {
-      this.toastr.success('Record Succesfully deleted!','Asset Register');
+  //Load data 
+  loadData() {
+    this.assetService.getAssets().subscribe(res =>{
+      this.assetService.assets = res;
+      this.source = new LocalDataSource(this.assetService.assets);
       console.log(res);
-
-      //Retrieving new data from datasource
-      this.assetService.getAssets().subscribe(res=> { 
-        this.assetService.assets = res;
-        console.log(res);        
-      },
-        err=> {
-          console.log(err);
-        });
-
     }, err => {
-      this.toastr.error('There is an error occured!','Asset Register');
       console.log(err);
-    });
+    })
   }
- };
+
+  //Search bar
+  onSearch(query: string = '') {
+
+    if (query === '') {
+            this.source.setFilter([]);
+        }
+    else {
+      this.source.setFilter([
+      // fields we want to include in the search
+      {
+        field: 'id',
+        search: query
+      },
+      {
+        field: 'name',
+        search: query
+      },
+      {
+        field: 'username',
+        search: query
+      },
+      {
+        field: 'email',
+        search: query
+      }
+    ], false); 
+    // second parameter specifying whether to perform 'AND' or 'OR' search 
+    // (meaning all columns should contain search query or at least one)
+    // 'AND' by default, so changing to 'OR' by setting false here
+    }
+}
+
+  //Update record
+  updateRecord(event) {
+    var userID = localStorage.getItem('userID');
+    var data = {
+      id : event.newData.id,
+      name : event.newData.name,
+      type : event.newData.type,
+      description : event.newData.description,
+      remark : event.newData.remark,
+      ownerID : userID
+    }
+
+    this.assetService.updateAsset(event.newData.id, data).subscribe(
+      res => {
+        console.log(res);
+        event.confirm.resolve(event.newData);
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+  //Delete record
+  deleteRecord(event) {
+    if (confirm('Are you sure to delete this record ?') == true) {
+      this.assetService.deleteAsset(event.data.id).subscribe (
+        res => {
+          console.log(res);
+          this.loadData();
+          event.confirm.resolve(event.source.data);
+          //this.toastr.success('Record Succesfully deleted!','Asset Register');
+        },
+        err => {
+          console.log(err);
+           //this.toastr.error('There is an error occured!','Asset Register');
+        });
+    }
+  }
 
 }

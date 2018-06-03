@@ -1,6 +1,91 @@
-<nav class="navbar navbar-dark bg-primary">
-  <!-- Navbar content -->
-  	<ul class="navbar-nav">
-  		 <a class="nav-link" (click)="logOut()">LogOut</a>
-  	</ul>
-</nav>
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-4 col-md-7 col-sm-7">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">content_copy</i>
+                      </div>
+                      <p class="card-category">Total Assets</p>
+                      <h3 class="card-title">0
+                          <small>Assets</small>
+                      </h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                            <i class="material-icons">update</i> few minutes ago
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-7 col-sm-7">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">done</i>
+                      </div>
+                      <p class="card-category">Successful Transaction</p>
+                      <h3 class="card-title">0</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">date_range</i> Last 24 Hours
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-7 col-sm-7">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">info_outline</i>
+                      </div>
+                      <p class="card-category">Pending Transaction</p>
+                      <h3 class="card-title">2</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                            <i class="material-icons">update</i> 25 minutes ago
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+            <div class="col-md-5">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <div class="ct-chart" id="dailyUpload"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Daily Upload</h4>
+                        <p class="card-category">Your daily upload graph</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> updated 4 minutes ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-danger">
+                            <div class="ct-chart" id="monthlyUpload"></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Monthly Upload</h4>
+                            <p class="card-category">Your Monthly upload graph</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> updated 1 minute ago
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+            

@@ -3,5 +3,6 @@ export class Asset{
 	name : string;
 	description : string;
 	type : string;
-	remark : string;	
+	remark : string;
+	ownerID : number;	
 }

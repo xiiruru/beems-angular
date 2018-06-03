@@ -2,16 +2,14 @@
   "name": "asset",
   "plural": "assets",
   "base": "PersistedModel",
-  "idInjection": false,
-  "forceId": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "id": {
-      "type": "Number",
-      "required": false,
-      "id": true
+      "type": "number",
+      "required": true
     },
     "name": {
       "type": "string",
@@ -27,6 +25,10 @@
     },
     "remark": {
       "type": "string"
+    },
+    "ownerID": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],

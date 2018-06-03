@@ -1,14 +1,11 @@
-import { Component } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { Component} from '@angular/core';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
-  title = 'BEEMS Asset Management';
-  constructor (){}
+
 }

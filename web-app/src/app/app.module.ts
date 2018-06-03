@@ -1,61 +1,56 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
+
+import { AppRoutingModule } from './app.routing';
+import { ComponentsModule } from './components/components.module';
 
 //Component
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AssetsComponent } from './assets/assets.component';
-import { AssetComponent } from './assets/asset/asset.component';
-import { AssetDetailComponent } from './assets/asset-detail/asset-detail.component';
-
-
-//Services
-import { AuthService } from './auth/auth.service';
-import { AuthGuard } from './auth/auth.guard';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MapsComponent } from './maps/maps.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import {
+  AgmCoreModule
+} from '@agm/core';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
-
-const appRoutes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-	{path: 'home', component: HomeComponent},
-	{path: 'asset', component: AssetsComponent},
-	{path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'reset-password', component: PasswordResetComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]}
-];
+//service
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
+  imports: [
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    ComponentsModule,
+    RouterModule,
+    Ng2PageScrollModule,
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+    })
+  ],
   declarations: [
     AppComponent,
-    AssetsComponent,
-    AssetComponent,
-    AssetDetailComponent,
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent,
     PasswordResetComponent,
+    AdminLayoutComponent
+
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes),
-    FormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot()
-  ],
-  providers: [AuthService, AuthGuard],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

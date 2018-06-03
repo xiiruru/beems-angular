@@ -19,11 +19,23 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
+  resetForm() {
+     this._auth.registerUserData = {
+      first_name : "",
+      last_name : "",
+      email: "",
+      password : "",
+      cfmPassword : ""
+    }
+  }
+
   signUp() {
 
     this.isPwdError = false;
 
-  	//console.log(this._auth.registerUserData);
+    //console.log(this._auth.registerUserData);
     //If password matched
     if(this._auth.registerUserData.password == this._auth.registerUserData.cfmPassword) {
 
@@ -32,11 +44,12 @@ export class SignupComponent implements OnInit {
       email : this._auth.registerUserData.email,
       password : this._auth.registerUserData.password
     }
+
     console.log(body);
     
     this._auth.signupUser(body)
       .subscribe(
-        res => { console.log(res); this.sendtoLogin();} , //If success, show response
+        res => { console.log(res); this.resetForm(); this.sendtoLogin();} , //If success, show response
         err => { console.log(err);} //If fail, show error
         )
     }

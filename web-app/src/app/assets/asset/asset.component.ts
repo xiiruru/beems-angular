@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { AssetService } from '../shared/asset.service';
-import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../auth/auth.service';
+
 import * as hash from 'json-hash'; //Hash Json Object
 
 @Component({
@@ -14,66 +15,40 @@ import * as hash from 'json-hash'; //Hash Json Object
 export class AssetComponent implements OnInit {
 
 
-  constructor(private assetService : AssetService, private toastr : ToastrService) { }
+  constructor(private _auth: AuthService ,private assetService : AssetService) { }
 
-
+ 
   ngOnInit() {
-  	 this.resetForm();
-  	}
+     
+    }
 
-  resetForm(form? : NgForm) {
-  	
-  	if(form != null) 
-  		form.reset(); //reset form
-
-  	//Empty the object value
-  	this.assetService.selectedAsset = {
-  		id : null,
-  		name : '',
-  		type : '',
-  		description : '',
-  		remark: ''
-  	}
+  //Reset   
+  resetForm() {
+    this.assetService.selectedAsset = {
+      id : null,
+      name : '',
+      type : '',
+      description : '',
+      remark: '',
+      ownerID: null
+    }
   }
 
-  onSubmit(form : NgForm) {
-    if(form.value.id == null) {
+  //Submit asset form
+  onSubmit() {
+      var userID = localStorage.getItem('userID');
+      this.assetService.selectedAsset.ownerID = parseInt(userID); 
       this.assetService.insertAsset(this.assetService.selectedAsset).subscribe(
       res => {
-        this.resetForm(form);
-        this.assetService.getAssets().subscribe(res =>{
-
-          this.assetService.assets = res;
-          console.log(res);
-           //Hash asset
-            //Send to blockchain
-          }, err => {
-
-          console.log(err);
-        });
-
-        this.toastr.success('New Record Succesfully Added!','Asset Register');
+        console.log(res);
+        this.resetForm();
+        var contentHash = hash.digest(res); //get hash of object
+        //this.toastr.success('New Record Succesfully Added!','Asset Register');
       },
       err => {
-        this.toastr.error('There is an error occured!','Asset Register');
-      });
+        console.log(err);
+        //this.toastr.error('There is an error occured!','Asset Register');
+      }); 
     }
-    else {
-      this.assetService.updateAsset(this.assetService.selectedAsset.id, this.assetService.selectedAsset).subscribe(
-      res => {
-        this.resetForm(form);
-        this.assetService.getAssets().subscribe(res =>{
-          this.assetService.assets = res;
-          console.log(res);
-          }, err => {
-          console.log(err);
-        });
-        this.toastr.info('Record Succesfully Updated!','Asset Register');
-      },
-      err => {
-        this.toastr.error('There is an error occured!','Asset Register');
-      });
-    }
-  }
 
 }

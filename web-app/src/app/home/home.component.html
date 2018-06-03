@@ -1,8 +1,10 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <div class="parallax">
   <ul>
     <li><a class="active">BEEMS</a></li>
-    <li><a class="home" href="#aboutApp">About</a></li>
-    <li><a class="home" href="#feature">Features</a></li>
+    <li><a pageScroll href="#about">About</a></li>
+    <li><a pageScroll href="#features">Features</a></li>
     <li class="right"><button (click)="sendtoLogin()" class="login">Sign In</button></li>
   </ul>
 
@@ -13,9 +15,10 @@
   </div>
 </div>
 
+<div id="about"></div>
 <div class="about">
     <img class="image-about" src="/assets/tracker.png">
-    <h1 id="aboutApp">BEEMS</h1>
+    <h1>BEEMS</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br>
       incididunt ut labore et dolore magna aliqua.</p>
     <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut <br>
@@ -28,7 +31,7 @@
 
 <div class="parallax2"></div>
 
-<h2 id="feature">Why BEEMS?</h2>
+<h2 id="features">Why BEEMS?</h2>
 <div class="why">
     <img class="image-why" src="/assets/transfer.png">
     <h4>User Friendly</h4>
