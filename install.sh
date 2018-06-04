@@ -2,6 +2,9 @@
 
 echo "Installing the necessary modules to run..."
 
+echo "Install localtunnel tool used here globally"
+npm install -g localtunnel
+
 echo "Install the Loopback"
 cd ./api
 npm install
