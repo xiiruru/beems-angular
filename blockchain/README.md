@@ -23,6 +23,7 @@ chmod u+x createApp.sh
 chmod u+x updateApp.sh
 chmod u+x uninstall.sh
 chmod u+x updateVersion.sh
+chmod u+x localDeploy.sh
 
 # Install the necessary components to start by using npm. [Requires Internet connection]
 ./npmInstall.sh
@@ -32,6 +33,10 @@ chmod u+x updateVersion.sh
 
 # Start the app/fabric-network with REST API. One channel, one peer.
 ./startApp.sh
+
+# Deploy the localhost to the Internet (as long as localhost for the blockchain is alive)
+# Install the required tool: https://localtunnel.github.io/www/
+./localDeploy.sh
 
 # Close the app/fabric-network
 ./stopApp.sh
@@ -68,6 +73,10 @@ chmod u+x updateVersion.sh
 
 # Next time onwards.
 ./startApp.sh
+
+# Public test deploy (lazy)
+# Install the required tool: https://localtunnel.github.io/www/
+./localDeploy.sh
 
 # Stop service
 ./stopApp.sh
