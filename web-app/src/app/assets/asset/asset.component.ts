@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { AssetService } from '../shared/asset.service';
 import { AuthService } from '../../auth/auth.service';
+import { NotificationService } from '../../notifications/notification.service';
 
 import * as hash from 'json-hash'; //Hash Json Object
 
@@ -15,7 +16,7 @@ import * as hash from 'json-hash'; //Hash Json Object
 export class AssetComponent implements OnInit {
 
 
-  constructor(private _auth: AuthService ,private assetService : AssetService) { }
+  constructor(private _auth: AuthService ,private assetService : AssetService, private notify : NotificationService) { }
 
  
   ngOnInit() {
@@ -43,11 +44,11 @@ export class AssetComponent implements OnInit {
         console.log(res);
         this.resetForm();
         var contentHash = hash.digest(res); //get hash of object
-        //this.toastr.success('New Record Succesfully Added!','Asset Register');
+        this.notify.showNotification('bottom','right','success','<b>Asset Register<b>','Successfully added!');
       },
       err => {
         console.log(err);
-        //this.toastr.error('There is an error occured!','Asset Register');
+        this.notify.showNotification('bottom','right','danger','<b>Asset Register<b>','Error has occured!');
       }); 
     }
 

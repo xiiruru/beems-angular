@@ -3,6 +3,8 @@ import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
 
 import { Asset } from '../shared/asset';
 import { AssetService } from '../shared/asset.service';
+import { NotificationService } from '../../notifications/notification.service';
+
 import * as hash from 'json-hash'; //Hash Json Object
 
 @Component({
@@ -47,7 +49,7 @@ export class AssetDetailComponent implements OnInit {
 
   source: LocalDataSource; // add a property to the component
 
-  constructor(private assetService : AssetService) { 
+  constructor(private assetService : AssetService, private notify : NotificationService) { 
   }
 
   ngOnInit() {
@@ -113,9 +115,11 @@ export class AssetDetailComponent implements OnInit {
       res => {
         console.log(res);
         event.confirm.resolve(event.newData);
+        this.notify.showNotification('bottom','right','info','<b>Asset Update<b>','Successfully update asset!');
       },
       err => {
         console.log(err);
+        this.notify.showNotification('bottom','right','danger','<b>Asset Register<b>','Error has occured!');
       });
   }
 
@@ -127,11 +131,11 @@ export class AssetDetailComponent implements OnInit {
           console.log(res);
           this.loadData();
           event.confirm.resolve(event.source.data);
-          //this.toastr.success('Record Succesfully deleted!','Asset Register');
+          this.notify.showNotification('bottom','right','danger','<b>Asset Delete<b>','Successfully delete asset!');
         },
         err => {
           console.log(err);
-           //this.toastr.error('There is an error occured!','Asset Register');
+          this.notify.showNotification('bottom','right','danger','<b>Asset Register<b>','Error has occured!');
         });
     }
   }

@@ -3,7 +3,6 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
 import { AdminComponent } from '../../admin/admin.component';
 import { AssetComponent } from '../../assets/asset/asset.component';
 import { AssetDetailComponent } from '../../assets/asset-detail/asset-detail.component';
@@ -56,7 +55,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'asset-list',     component: AssetDetailComponent },
     { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
     { path: 'create-asset',   component: AssetComponent },
     { path: 'admin',          component: AdminComponent},
 ];

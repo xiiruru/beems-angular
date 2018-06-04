@@ -8,13 +8,13 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
 import { AdminComponent } from '../../admin/admin.component';
 import { AssetComponent } from '../../assets/asset/asset.component';
 import { AssetDetailComponent } from '../../assets/asset-detail/asset-detail.component';
 
 //Service
 import { AssetService } from '../../assets/shared/asset.service';
+import { NotificationService } from '../../notifications/notification.service';
 
 import {
   MatButtonModule,
@@ -37,12 +37,11 @@ import {
     DashboardComponent,
     UserProfileComponent,
     MapsComponent,
-    NotificationsComponent,
     AdminComponent,
     AssetComponent,
     AssetDetailComponent
   ],
-   providers: [AssetService],
+   providers: [AssetService, NotificationService],
 })
 
 export class AdminLayoutModule {}

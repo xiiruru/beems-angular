@@ -18,7 +18,6 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import {
   AgmCoreModule
 } from '@agm/core';
@@ -48,7 +47,6 @@ import { CookieService } from 'ngx-cookie-service';
     SignupComponent,
     PasswordResetComponent,
     AdminLayoutComponent
-
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
