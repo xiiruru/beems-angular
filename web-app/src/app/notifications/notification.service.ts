@@ -7,6 +7,9 @@ export class NotificationService {
 
   constructor() { }
 
+  notificationPush : string [] = [];
+
+
    showNotification(from, align, type, title, message){
       //const type = ['','info','success','warning','danger'];
 
@@ -35,5 +38,10 @@ export class NotificationService {
             '<a href="{3}" target="{4}" data-notify="url"></a>' +
           '</div>'
       });
+  }
+
+  //Clear notification bell
+  clearNotification() {
+  	this.notificationPush = [];
   }
 }

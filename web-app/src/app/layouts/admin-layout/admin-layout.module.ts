@@ -14,7 +14,7 @@ import { AssetDetailComponent } from '../../assets/asset-detail/asset-detail.com
 
 //Service
 import { AssetService } from '../../assets/shared/asset.service';
-import { NotificationService } from '../../notifications/notification.service';
+//import { NotificationService } from '../../notifications/notification.service';
 
 import {
   MatButtonModule,
@@ -41,7 +41,7 @@ import {
     AssetComponent,
     AssetDetailComponent
   ],
-   providers: [AssetService, NotificationService],
+   providers: [AssetService]
 })
 
 export class AdminLayoutModule {}

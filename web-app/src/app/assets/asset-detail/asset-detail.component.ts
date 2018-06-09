@@ -116,6 +116,7 @@ export class AssetDetailComponent implements OnInit {
         console.log(res);
         event.confirm.resolve(event.newData);
         this.notify.showNotification('bottom','right','info','<b>Asset Update<b>','Successfully update asset!');
+        this.notify.notificationPush.push('Asset ID: ' + event.data.id + ' has been updated!');
       },
       err => {
         console.log(err);
@@ -132,6 +133,7 @@ export class AssetDetailComponent implements OnInit {
           this.loadData();
           event.confirm.resolve(event.source.data);
           this.notify.showNotification('bottom','right','danger','<b>Asset Delete<b>','Successfully delete asset!');
+          this.notify.notificationPush.push('Asset ID: ' + event.data.id + ' has been deleted!');
         },
         err => {
           console.log(err);

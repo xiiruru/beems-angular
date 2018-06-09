@@ -24,7 +24,7 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 //service
-import { CookieService } from 'ngx-cookie-service';
+import { NotificationService } from './notifications/notification.service';
 
 
 @NgModule({
@@ -48,7 +48,7 @@ import { CookieService } from 'ngx-cookie-service';
     PasswordResetComponent,
     AdminLayoutComponent
   ],
-  providers: [CookieService],
+  providers: [NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

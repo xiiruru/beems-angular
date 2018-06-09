@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 
 import { SignUpUser } from '../signup/signup.model';
 
-//Service
-import { CookieService } from 'ngx-cookie-service';
 
 //HTTP header
 const httpOptions = {
@@ -16,7 +14,7 @@ const httpOptions = {
 export class AuthService {
 
   registerUserData : SignUpUser = new SignUpUser(); //register user object
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   /* POST REQUEST */
   //Register User 

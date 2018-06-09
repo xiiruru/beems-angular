@@ -45,6 +45,7 @@ export class AssetComponent implements OnInit {
         this.resetForm();
         var contentHash = hash.digest(res); //get hash of object
         this.notify.showNotification('bottom','right','success','<b>Asset Register<b>','Successfully added!');
+        this.notify.notificationPush.push('New Asset has been added!');
       },
       err => {
         console.log(err);

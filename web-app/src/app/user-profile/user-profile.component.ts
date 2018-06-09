@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
+import { NotificationService } from '../notifications/notification.service';
 import { userProfile } from './user.model';
 
 @Component({
@@ -12,7 +13,7 @@ export class UserProfileComponent implements OnInit {
 
   user : userProfile = new userProfile();
 
-  constructor(private _auth:AuthService) { }
+  constructor(private _auth:AuthService, private notify : NotificationService) { }
 
   ngOnInit() {
   	//retrieve user info
@@ -30,6 +31,16 @@ export class UserProfileComponent implements OnInit {
 
   }
 
+  //Clear user profile
+  clearProfile() {
+    this.user = {
+        realm : '',
+        email : '',
+        password : null,
+        cfmPassword : null
+      }
+  }
+
   //Update user profile
   updateProfile() {
   	if(this.user.password == this.user.cfmPassword) {
@@ -40,9 +51,13 @@ export class UserProfileComponent implements OnInit {
   		}
   		this._auth.updateUserInfo(body).subscribe(res =>{
 	      console.log(res);
+        this.notify.showNotification('bottom','right','info','<b>User Profile<b>','User profile updated!');
+        this.notify.notificationPush.push('User profile updated!');
+        this.clearProfile();
 	 
 	    }, err => {
 	      console.log(err);
+        this.notify.showNotification('bottom','right','danger','<b>User Profile<b>','Error has occured!');
 	    })
 
   	}
