@@ -68,10 +68,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
+      var test =  [0, 2, 1, 0, 0, 0, 0];
       const DailyUpload: any = {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+          labels: ['S','M', 'T', 'W', 'T', 'F', 'S'],
           series: [
-              [0, 2, 1, 0, 0, 0, 0]
+              test
           ]
       };
 

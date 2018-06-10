@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginUserData = {}; //Login user object
   isLoginError:boolean = false;
 
-  constructor(private _auth:AuthService, private router: Router, private cookieService: CookieService) { }
+  constructor(private _auth:AuthService, private router: Router) { }
 
   ngOnInit() {
   }

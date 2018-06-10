@@ -37,7 +37,7 @@ import { NotificationService } from './notifications/notification.service';
     Ng2PageScrollModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+      //apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
   ],
   declarations: [
