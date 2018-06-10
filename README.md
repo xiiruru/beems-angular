@@ -2,6 +2,15 @@
 
 [HCP]: https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html "Installing pre-requisites by Hyperledger Composer documentation"
 
+Blockchain-based Enterprise Entity Management System. Using blockchain technologies in asset management context. Project with MIMOS.
+
+## Developement tools used
+
+1. Hyperledger Composer (which uses Hyperledger Fabric) [Blockchain]
+1. PostgreSQL [Database]
+1. Loopback [REST API server]
+1. Angular 5 [Front-end web page]
+
 ## Pre-requisites
 
 - [Hyperledger Composer's list of prerequistics][HCP]
@@ -16,20 +25,20 @@ Others are implemented later by the script provided.
 
 1. [Refer here for the installation pre-requistics for Hyperledger Composer][HCP]
 1. `./install.sh`
-1. Install pgAdmin4 and restore the database.
+1. Install "pgAdmin4" and restore the database.
 
 ## How to run
 
 Requires at least four terminals processes in Linux
 
-1. Go to `api` folder and `node .`
 1. Go to `blockchain/scripts` folder and `./startApp.sh`
 1. Start and enable the postgreSQL databases.
+1. Go to `api` folder and `node .`
 1. Go to `web-app/src` folder and `ng serve --open`
 
 Check the browser for the web application (should be at `localhost:4200`).
 
-Alternatively (if you do not care about the terminal output abomination):-
+Alternatively (will have terminal output abomination):-
 
 1. Start and enable the postgreSQL databases.
 1. `./run.sh`
