@@ -1,17 +1,23 @@
 # org.bit.beems
 
-## Description
+[HCP]: https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html "Installing pre-requisites by Hyperledger Composer documentation"
 
-Blockchain-based Enterprise Entity Management System. Using blockchain technologies in asset management context. Project with MIMOS.
+## Notice
+
+Refer and complete [Hyperledger Composer's list of prerequistics][HCP] before continuing.
 
 By time of writing, the version used are as follows (in case for breaking changes):-
 
 1. Hyperledger Fabric 1.1
 1. Hyperledger Composer 0.19
 
+Do note that this is for lab test environment use only and will require specialised configuration for production needs (which is not done here for brevity sake). Currently, it strictly uses a one peer, one channel, and no acl ruling (which also means no users too).
+
+For sanity reasons, please use uBuntu or Linux distribution. There is some configuration required for Windows environment when using Docker, especially the free Docker version.
+
 ## Usage
 
-Everything here assume you are doing it in `terminal` and is in `scripts` folder.
+Everything here assume it is done in `terminal` and is in `scripts` folder.
 
 ```bash
 # chmod
@@ -23,7 +29,6 @@ chmod u+x createApp.sh
 chmod u+x updateApp.sh
 chmod u+x uninstall.sh
 chmod u+x updateVersion.sh
-chmod u+x localDeploy.sh
 
 # Install the necessary components to start by using npm. [Requires Internet connection]
 ./npmInstall.sh
@@ -33,10 +38,6 @@ chmod u+x localDeploy.sh
 
 # Start the app/fabric-network with REST API. One channel, one peer.
 ./startApp.sh
-
-# Deploy the localhost to the Internet (as long as localhost for the blockchain is alive)
-# Install the required tool: https://localtunnel.github.io/www/
-./localDeploy.sh
 
 # Close the app/fabric-network
 ./stopApp.sh
@@ -73,10 +74,6 @@ chmod u+x updateVersion.sh
 
 # Next time onwards.
 ./startApp.sh
-
-# Public test deploy (lazy)
-# Install the required tool: https://localtunnel.github.io/www/
-./localDeploy.sh
 
 # Stop service
 ./stopApp.sh
