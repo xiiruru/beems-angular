@@ -1,10 +1,15 @@
 # psqldb notes
 
+[pgAdmin4]: https://www.pgadmin.org/ "pgAdmin4"
+[img]: ../img/pgAdmin4.png
+
+![][img]
+
 ## Installation
 
 ### Windows
 
-1. Download pgAdmin4 and install (pgAdmin 3 is painful to use).
+1. Download [pgAdmin4][pgAdmin4] and install (pgAdmin 3 is painful to use).
 
 ### Linux
 

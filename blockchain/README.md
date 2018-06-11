@@ -1,6 +1,9 @@
 # org.bit.beems
 
 [HCP]: https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html "Installing pre-requisites by Hyperledger Composer documentation"
+[img]: ../img/blockchain.png
+
+![][img]
 
 ## Notice
 

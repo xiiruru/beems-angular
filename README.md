@@ -7,7 +7,7 @@ Blockchain-based Enterprise Entity Management System. Using blockchain technolog
 ## Developement tools used
 
 1. Hyperledger Composer (which uses Hyperledger Fabric) [Blockchain]
-1. PostgreSQL [Database]
+1. pgAdmin4 (PostgreSQL) [Database]
 1. Loopback [REST API server]
 1. Angular 5 [Front-end web page]
 
