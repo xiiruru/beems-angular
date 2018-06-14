@@ -16,16 +16,20 @@ import {
   Location,
   Permissions
 } from 'expo';
+import {
+  SHA1
+} from 'crypto-js';
 
 //Main
 //QR code taken from: https://snack.expo.io/BJlFFcp2g
 //GPS and Map taken from: https://snack.expo.io/@schazers/expo-map-and-location-example
+//Crypto notes from: https://stackoverflow.com/a/42827463
 //Note: Need standard subdomain server. ngrok only allow one randomly-named tunnel for free users so...
 //Note2: Requires manual config every time for testing until we have standard servers.
 export default class App extends Component {
   config = {
-    apiUrl: "http://7ba9f371.ngrok.io/api/assets/",
-    blockchainUrl: "http://9269193f.ngrok.io/api/UpdateBEEMSAsset"
+    apiUrl: "http://26b9ca69.ngrok.io/api/assets/",
+    blockchainUrl: "http://875369d5.ngrok.io/api/UpdateBEEMSAsset"
   }
 
   state = {
@@ -38,6 +42,7 @@ export default class App extends Component {
     asset: null,
 
     assetID: null,
+    assetName: null,
     assetContentHash: null,
   };
 
@@ -121,8 +126,8 @@ export default class App extends Component {
     );
   };
 
-  _getContentHash = async () => {
-    console.log("Will send to: " + this.config.apiUrl + this.state.lastScannedQRInfo);
+  _getAsset = async () => {
+    console.log("Getting asset information from: " + this.config.apiUrl + this.state.lastScannedQRInfo);
     try {
       let response = await fetch(this.config.apiUrl + this.state.lastScannedQRInfo);
       let responseJson = null;
@@ -138,7 +143,7 @@ export default class App extends Component {
       Alert.alert('Unable to call REST Server. Check REST Server.');
       console.log(error);
     }
-    console.log("Asset test: " + this.state.asset.description);
+    console.log("Asset description test: " + this.state.asset.description);
   }
 
   _sendToBlockchain = async () => {
@@ -149,7 +154,8 @@ export default class App extends Component {
         body: JSON.stringify({
           "$class": "org.bit.beems.UpdateBEEMSAsset",
           "beemsAsset": "resource:org.bit.beems.BEEMSAsset#" + this.state.assetID,
-          "id": this.state.assetID,
+          "assetID": this.state.assetID,
+          "assetName": this.state.assetName,
           "assetContentHash": this.state.assetContentHash,
           "currentGPSLocation": this.state.locationResult
         })
@@ -163,9 +169,10 @@ export default class App extends Component {
     //Collect location data.
     this._getLocationAsync();
 
-    //Collect contentHash information
-    this._getContentHash();
+    //Collect asset information
+    //this._getAsset();
 
+    //Does the asset exist?
     if (this.state.asset === null)
     {
       //Alert ERROR FAIL when can't find the asset from the database.
@@ -184,8 +191,11 @@ export default class App extends Component {
     {
       //Set the state.
       this.setState({ assetID: this.state.lastScannedQRInfo });
-      this.setState({ assetContentHash: this.state.asset.description });
+      this.setState({ assetName: this.state.asset.assetName });
+      this.setState({ assetContentHash: SHA1((this.state.asset).toString()).toString() });
+      //this.setState({ assetName: "supreme" });
       //this.setState({ assetContentHash: "dis a lazy ngrok test boi" });
+      console.log("SHA1: " + this.state.assetContentHash);
 
       //Send to blockchain
       this._sendToBlockchain();
