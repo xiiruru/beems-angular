@@ -30,6 +30,7 @@ chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
 chmod u+x updateApp.sh
+chmod u+x setUpdateApp.sh
 chmod u+x uninstall.sh
 chmod u+x updateVersion.sh
 
@@ -52,6 +53,9 @@ chmod u+x updateVersion.sh
 # Update the app in the fabric-network when it is up (for developers only). [Requires Internet connection]
 ./updateApp.sh
 
+# Update the app in the fabric-network when it is up (for users only). [Requires Internet connection]
+./setUpdateApp.sh
+
 # Uninstall the app and the fabric-network
 ./uninstall.sh
 ```
@@ -66,6 +70,7 @@ chmod u+x startApp.sh
 chmod u+x stopApp.sh
 chmod u+x createApp.sh
 chmod u+x updateApp.sh
+chmod u+x setUpdateApp.sh
 chmod u+x uninstall.sh
 chmod u+x updateVersion.sh
 
@@ -77,6 +82,9 @@ chmod u+x updateVersion.sh
 
 # Next time onwards.
 ./startApp.sh
+
+# Blockchain version was upgraded. [Requires Internet connection]
+./setUpdateApp.sh
 
 # Stop service
 ./stopApp.sh
