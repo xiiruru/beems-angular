@@ -14,6 +14,7 @@ participant User identified by id {
 asset BEEMSAsset identified by id {
   o String id
 
+  o String assetName
   o String assetContentHash
   o String currentGPSLocation
 }
@@ -22,6 +23,7 @@ transaction UpdateBEEMSAsset {
   --> BEEMSAsset beemsAsset
   
   o String assetID
+  o String assetName
   o String assetContentHash
   o String currentGPSLocation
 }

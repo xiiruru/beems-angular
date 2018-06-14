@@ -6,6 +6,7 @@
  * @transaction
  */
 async function doUpdateBEEMSAsset(updateBEEMSAsset) {
+    updateBEEMSAsset.beemsAsset.assetName = updateBEEMSAsset.assetName;
     updateBEEMSAsset.beemsAsset.assetContentHash = updateBEEMSAsset.assetContentHash;
     updateBEEMSAsset.beemsAsset.currentGPSLocation = updateBEEMSAsset.currentGPSLocation;
 
