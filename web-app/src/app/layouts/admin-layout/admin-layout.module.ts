@@ -11,6 +11,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { AdminComponent } from '../../admin/admin.component';
 import { AssetComponent } from '../../assets/asset/asset.component';
 import { AssetDetailComponent } from '../../assets/asset-detail/asset-detail.component';
+import { AssetLocationComponent } from '../../assets/asset-location/asset-location.component';
 
 //Service
 import { AssetService } from '../../assets/shared/asset.service';
@@ -31,7 +32,7 @@ import {
     MatRippleModule,
     MatInputModule,
     MatTooltipModule,
-    Ng2SmartTableModule,
+    Ng2SmartTableModule
   ],
   declarations: [
     DashboardComponent,
@@ -39,7 +40,8 @@ import {
     MapsComponent,
     AdminComponent,
     AssetComponent,
-    AssetDetailComponent
+    AssetDetailComponent,
+    AssetLocationComponent
   ],
    providers: [AssetService]
 })

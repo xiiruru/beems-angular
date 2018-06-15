@@ -18,9 +18,6 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MapsComponent } from './maps/maps.component';
-import {
-  AgmCoreModule
-} from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 //service
@@ -35,10 +32,7 @@ import { NotificationService } from './notifications/notification.service';
     ComponentsModule,
     RouterModule,
     Ng2PageScrollModule,
-    AppRoutingModule,
-    AgmCoreModule.forRoot({
-      //apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,

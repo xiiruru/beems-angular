@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userToken', JSON.stringify(res.id)); //store token in browser local storage
             //this.cookieService.set('userID', JSON.stringify(res.userId));
             localStorage.setItem('userID', JSON.stringify(res.userId)); //store token in browser local storage
+            alert('Logged In!');
             this.router.navigate(['/dashboard']); 
           } , //If success, show response
           err => 

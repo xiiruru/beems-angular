@@ -44,6 +44,9 @@ export class AssetDetailComponent implements OnInit {
     },
     delete : {
       confirmDelete: true
+    },
+    actions: {
+      add: false,
     }
   };
 
@@ -97,7 +100,7 @@ export class AssetDetailComponent implements OnInit {
     // (meaning all columns should contain search query or at least one)
     // 'AND' by default, so changing to 'OR' by setting false here
     }
-}
+  }
 
   //Update record
   updateRecord(event) {

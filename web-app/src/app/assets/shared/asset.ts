@@ -4,5 +4,7 @@ export class Asset{
 	description : string;
 	type : string;
 	remark : string;
-	ownerID : number;	
+	ownerID : number;
+	content_hash : string;
+	date_created : string;
 }

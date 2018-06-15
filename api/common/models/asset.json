@@ -29,6 +29,13 @@
     "ownerID": {
       "type": "number",
       "required": true
+    },
+    "content_hash": {
+      "type" : "string"
+    },
+    "date_created" : {
+      "type" : "string",
+      "required": true
     }
   },
   "validations": [],

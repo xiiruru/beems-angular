@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
     
     this._auth.signupUser(body)
       .subscribe(
-        res => { console.log(res); this.resetForm(); this.sendtoLogin();} , //If success, show response
+        res => { console.log(res); this.resetForm(); this.sendtoLogin(); alert('Successfully Registered!');} , //If success, show response
         err => { console.log(err);} //If fail, show error
         )
     }

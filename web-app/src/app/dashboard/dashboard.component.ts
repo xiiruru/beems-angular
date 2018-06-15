@@ -1,47 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+
+import { AssetService } from '../assets/shared/asset.service';
 import * as Chartist from 'chartist';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
+
+
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
-  startAnimationForLineChart(chart){
-      let seq: any, delays: any, durations: any;
-      seq = 0;
-      delays = 80;
-      durations = 500;
+  constructor(private assetService : AssetService) { }
 
-      chart.on('draw', function(data) {
-        if(data.type === 'line' || data.type === 'area') {
-          data.element.animate({
-            d: {
-              begin: 600,
-              dur: 700,
-              from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-              to: data.path.clone().stringify(),
-              easing: Chartist.Svg.Easing.easeOutQuint
-            }
-          });
-        } else if(data.type === 'point') {
-              seq++;
-              data.element.animate({
-                opacity: {
-                  begin: seq * delays,
-                  dur: durations,
-                  from: 0,
-                  to: 1,
-                  easing: 'ease'
-                }
-              });
-          }
-      });
+  totalAsset : number = 0;
+  safeAsset : number = 0;
+  suspAsset : number = 0;
+  monthCount : number[] = [0,0,0,0,0,0,0,0,0,0,0,0];
 
-      seq = 0;
-  };
   startAnimationForBarChart(chart){
       let seq2: any, delays2: any, durations2: any;
 
@@ -65,42 +42,44 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+
+
   ngOnInit() {
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+      this.loadGraph();
+      this.getTotalAssetCount();
+    }
 
-      var test =  [0, 2, 1, 0, 0, 0, 0];
-      const DailyUpload: any = {
-          labels: ['S','M', 'T', 'W', 'T', 'F', 'S'],
-          series: [
-              test
-          ]
-      };
+    //Load data & draw the graph
+    loadGraph() {
+      this.assetService.getAssetDate().subscribe(res =>{
+    
+      var length = Object.keys(res).length; //length of object
 
-     const optionsDailyUpload: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 20, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+      for(var i =0; i < length; i++){
+
+        var d = new Date(res[i]['date_created']); //Get Date type to get month
+        this.monthCount[d.getMonth()] += 1; //Add 1 count to the month
+
+        //console.log(this.monthCount);
+        this.drawChart(); //Input data into graph
       }
+      
+      }, err => {
+        console.log(err);
+      })
+    }
 
-      var dailyUpload = new Chartist.Line('#dailyUpload', DailyUpload, optionsDailyUpload);
-
-      this.startAnimationForLineChart(dailyUpload);
-
-
+    drawChart() {
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
       const MonthlyUpload: any = {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           series: [
-              [5, 2, 3, 1, 3, 0, 0, 0, 0, 0, 0, 0]
+              this.monthCount
           ]
       };
 
      const optionsMonthlyUpload: any = {
-          seriesBarDistance: 12,
+          seriesBarDistance: 10,
           low: 0,
           high: 20, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
@@ -108,7 +87,30 @@ export class DashboardComponent implements OnInit {
 
       var monthlyUpload = new Chartist.Bar('#monthlyUpload', MonthlyUpload, optionsMonthlyUpload);
 
-      // start animation for the Completed Tasks Chart - Line Chart
-      this.startAnimationForLineChart(MonthlyUpload);
+      // start animation for the Completed Tasks Chart - bar Chart
+      //this.startAnimationForBarChart(MonthlyUpload);
+    }
+
+    getTotalAssetCount() {
+      this.assetService.getAssetCount().subscribe(res =>{
+        console.log(res);
+        this.totalAsset = res['count'];   
+      }, err => {
+        console.log(err);
+      })
+    }
+
+    checkAsset() {
+      this.assetService.getAssetHash().subscribe(res =>{
+    
+      var length = Object.keys(res).length; //length of object
+
+      for(var i =0; i < length; i++){
+          //Asset content hash from db & blockchain
+      }
+      
+      }, err => {
+        console.log(err);
+      })
     }
 }

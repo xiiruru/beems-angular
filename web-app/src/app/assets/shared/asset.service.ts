@@ -48,4 +48,23 @@ export class AssetService {
        return this.http.delete(dbUrl +  id);
   }
 
+  //HTTP GET request - Retrieve assets field for date_created 
+  getAssetDate(){
+    var ownerID = JSON.parse(localStorage.getItem('userID'));
+    let url = dbUrl + "?filter[fields][date_created]=true && [where][ownerID]=" + ownerID;
+    return this.http.get<any>(url, httpOptions);
+  }
+
+   //HTTP GET request - Retrieve assets field for content_hash
+  getAssetHash(){
+    var ownerID = JSON.parse(localStorage.getItem('userID'));
+    let url = dbUrl + "?filter[fields][content_hash]=true && [where][ownerID]=" + ownerID;
+    return this.http.get<any>(url, httpOptions);
+  }
+
+  //HTTP GET request - Retrieve assets instances count
+  getAssetCount() {
+      let url = "http://localhost:3000/api/assets/count";
+      return this.http.get(url, httpOptions);
+  }
 }

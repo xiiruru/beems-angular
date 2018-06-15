@@ -6,6 +6,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { AdminComponent } from '../../admin/admin.component';
 import { AssetComponent } from '../../assets/asset/asset.component';
 import { AssetDetailComponent } from '../../assets/asset-detail/asset-detail.component';
+import { AssetLocationComponent } from '../../assets/asset-location/asset-location.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -56,5 +57,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'asset-list',     component: AssetDetailComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'create-asset',   component: AssetComponent },
+    { path: 'asset-location',   component: AssetLocationComponent },
     { path: 'admin',          component: AdminComponent},
 ];
