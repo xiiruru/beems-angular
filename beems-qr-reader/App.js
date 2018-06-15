@@ -127,7 +127,7 @@ export default class App extends Component {
   };
 
   _getAsset = async () => {
-    console.log("Getting asset information from: " + this.config.apiUrl + this.state.lastScannedQRInfo);
+    //console.log("Getting asset information from: " + this.config.apiUrl + this.state.lastScannedQRInfo);
     try {
       let response = await fetch(this.config.apiUrl + this.state.lastScannedQRInfo);
       let responseJson = null;
@@ -143,7 +143,7 @@ export default class App extends Component {
       Alert.alert('Unable to call REST Server. Check REST Server.');
       console.log(error);
     }
-    console.log("Asset description test: " + this.state.asset.description);
+    //console.log("Asset description test: " + this.state.asset.description);
   }
 
   _sendToBlockchain = async () => {
@@ -170,7 +170,7 @@ export default class App extends Component {
     this._getLocationAsync();
 
     //Collect asset information
-    //this._getAsset();
+    this._getAsset();
 
     //Does the asset exist?
     if (this.state.asset === null)
@@ -195,7 +195,7 @@ export default class App extends Component {
       this.setState({ assetContentHash: SHA1((this.state.asset).toString()).toString() });
       //this.setState({ assetName: "supreme" });
       //this.setState({ assetContentHash: "dis a lazy ngrok test boi" });
-      console.log("SHA1: " + this.state.assetContentHash);
+      //console.log("SHA1: " + this.state.assetContentHash);
 
       //Send to blockchain
       this._sendToBlockchain();
