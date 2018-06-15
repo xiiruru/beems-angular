@@ -83,7 +83,7 @@ chmod u+x updateVersion.sh
 # Next time onwards.
 ./startApp.sh
 
-# Blockchain version was upgraded. [Requires Internet connection]
+# When the blockchain version was upgraded. [Requires Internet connection]
 ./setUpdateApp.sh
 
 # Stop service
