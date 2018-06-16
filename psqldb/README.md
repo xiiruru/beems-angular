@@ -32,7 +32,7 @@
 1. Make a new server. Host:Port should be `127.0.0.1:5432`.
 1. Make a new database called `beems`.
 1. Right click on `beems` database. Click on the `Restore...` option.
-1. Find and pick `db_latest` in this filepath.
+1. Find and pick `db_latest1` in this filepath.
 1. Click the `Restore` button
 1. Expand `beems`, expand `Schemas`, expand `public`, expand `Tables`.
 1. Click on the `Tools;Query Tool` from the top menu bar.
