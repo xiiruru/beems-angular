@@ -28,7 +28,7 @@ import {
 //Note2: Requires manual config every time for testing until we have standard servers.
 export default class App extends Component {
   config = {
-    apiUrl: "http://26b9ca69.ngrok.io/api/assets/",
+    apiUrl: "http://db2d8b24.ngrok.io/api/assets/",
     blockchainUrl: "http://875369d5.ngrok.io/api/UpdateBEEMSAsset"
   }
 
@@ -192,13 +192,17 @@ export default class App extends Component {
       //Set the state.
       this.setState({ assetID: this.state.lastScannedQRInfo });
       this.setState({ assetName: this.state.asset.assetName });
-      this.setState({ assetContentHash: SHA1((this.state.asset).toString()).toString() });
+      this.state.asset.remark = "";
+      this.state.asset.content_hash = "";
+      this.state.asset.date_created = "2018-06-15 16:10:14";
+      console.log(JSON.stringify(this.state.asset));
+      this.setState({ assetContentHash: SHA1(JSON.stringify(this.state.asset)) });
       //this.setState({ assetName: "supreme" });
       //this.setState({ assetContentHash: "dis a lazy ngrok test boi" });
-      //console.log("SHA1: " + this.state.assetContentHash);
+      console.log("SHA1: " + this.state.assetContentHash);
 
       //Send to blockchain
-      this._sendToBlockchain();
+      //this._sendToBlockchain();
 
       //Alert OK when send is successfully done.
       Alert.alert(
