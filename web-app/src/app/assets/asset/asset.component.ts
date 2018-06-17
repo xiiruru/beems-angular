@@ -5,8 +5,7 @@ import { AssetService } from '../shared/asset.service';
 import { AuthService } from '../../auth/auth.service';
 import { NotificationService } from '../../notifications/notification.service';
 
-import * as hash from 'json-hash'; //Hash Json Object
-import * as parse from 'postgres-date';
+import * as crypto from 'crypto-js'; //CryptoJS lib 
 
 @Component({
   selector: 'app-asset',
@@ -52,6 +51,21 @@ export class AssetComponent implements OnInit {
   //Submit asset form
   onSubmit() {
 
+    /*
+      var obj = {
+        id:1,
+        name:"test",
+        type:"test",
+        description:"test",
+        remark:"",
+        ownerID:1,
+        content_hash:"",
+        date_created:"2018-06-15 16:10:14"
+      }
+
+      console.log(crypto.SHA1(JSON.stringify(obj)).toString());
+  */
+      
       var userID = localStorage.getItem('userID');
       this.assetService.selectedAsset.ownerID = parseInt(userID);
 
@@ -63,13 +77,28 @@ export class AssetComponent implements OnInit {
         console.log(res);
 
         //add content hash to db
-        var contentHash = hash.digest(res); //get hash of object
+        var contentHash = crypto.SHA1(JSON.stringify(res)).toString(); //get hash of object
         console.log(contentHash);
         this.assetService.selectedAsset.content_hash = contentHash;
+
+        //Blockchain Object
+         var obj = {
+             id: res['id'],
+             assetName : this.assetService.selectedAsset.name,
+             assetContentHash : contentHash,
+             currentGPSLocation : ""
+           }
+
         this.assetService.updateAsset(res['id'], this.assetService.selectedAsset).subscribe(
         res => {
           console.log(res);
            //Notification & Reset form
+
+          //add info into blockchain
+          this.assetService.insertBCAsset(obj).subscribe(
+            res => console.log(res) , err => console.log(err)
+            );
+
           this.notify.showNotification('bottom','right','success','<b>Asset Register<b>','Successfully added!');
           this.notify.notificationPush.push('New Asset has been added!');
           this.resetForm();

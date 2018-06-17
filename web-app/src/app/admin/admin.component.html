@@ -1,6 +1,21 @@
 <div class="main-content">
     <div class="container-fluid">
-        
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header card-header-danger">
+						<h4 class="card-title ">Transaction Record</h4>
+						<p class="card-category"></p>
+					</div>
+					<div class="card-body">
+						<input #search class="search" type="text" placeholder="Search..." (change) ="onSearch(search.value)"><i class="searchico fa fa-search"></i><br><br>
+						<div style="overflow-x: auto;" class="table-responsive smart-table-container">    
+							<ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
   </div>
   

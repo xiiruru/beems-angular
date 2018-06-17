@@ -1,0 +1,37 @@
+table {
+	table-layout: auto;
+}
+
+td.data {
+	padding-top: 10px;
+}
+
+td.action {
+	padding-left: 2.5em;
+}
+
+.searchico {
+	padding-left: 1em;
+}
+
+
+:host /deep/ table th {
+background-color: #F44336;
+color: #fff;
+}
+
+:host /deep/ table tbody {
+overflow-x: auto;
+}
+
+:host /deep/ table th a{
+color: #fff;
+}
+
+:host /deep/ table tr:nth-child(even) {
+background-color: #DCDCDC;
+}
+
+:host /deep/ table tr:nth-child(odd) {
+background-color: #fff;
+}

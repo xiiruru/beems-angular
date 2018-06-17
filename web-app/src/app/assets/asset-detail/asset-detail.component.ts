@@ -5,7 +5,7 @@ import { Asset } from '../shared/asset';
 import { AssetService } from '../shared/asset.service';
 import { NotificationService } from '../../notifications/notification.service';
 
-import * as hash from 'json-hash'; //Hash Json Object
+import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-asset-detail',
@@ -16,6 +16,10 @@ import * as hash from 'json-hash'; //Hash Json Object
 export class AssetDetailComponent implements OnInit {
 
   settings = {
+    pager: {
+      display: true,
+      perPage: 5
+    },
     columns: {
       id: {
         title: 'ID',
@@ -39,6 +43,9 @@ export class AssetDetailComponent implements OnInit {
         filter: false
       }
     },
+    attr: {
+        class: 'table table-bordered'
+      },
     edit : {
       confirmSave: true
     },
@@ -118,6 +125,7 @@ export class AssetDetailComponent implements OnInit {
       res => {
         console.log(res);
         event.confirm.resolve(event.newData);
+
         this.notify.showNotification('bottom','right','info','<b>Asset Update<b>','Successfully update asset!');
         this.notify.notificationPush.push('Asset ID: ' + event.data.id + ' has been updated!');
       },

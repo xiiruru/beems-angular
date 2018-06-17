@@ -8,7 +8,7 @@
 						<p class="card-category">You can update and delete your assets here</p>
 					</div>
 					<div class="card-body">
-						<input #search class="search" type="text" placeholder="Search..." (change) ="onSearch(search.value)"><i class="searchico fa fa-search"></i>
+						<input #search class="search" type="text" placeholder="Search..." (change) ="onSearch(search.value)"><i class="searchico fa fa-search"></i><br><br>
 						<div class="table-responsive">    
 							<ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="updateRecord($event)" (deleteConfirm)="deleteRecord($event)"></ng2-smart-table>
 						</div>

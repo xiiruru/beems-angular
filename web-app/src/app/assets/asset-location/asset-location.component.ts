@@ -4,6 +4,17 @@ import { AssetService } from '../shared/asset.service';
 
 declare const google: any;
 
+interface assetInfo {
+  id: number,
+  assetName : string,
+  address : string
+}
+
+interface assetLocation {
+    latitude : number,
+    longitude : number
+  }
+
 @Component({
   selector: 'app-asset-location',
   templateUrl: './asset-location.component.html',
@@ -12,13 +23,17 @@ declare const google: any;
 
 export class AssetLocationComponent implements OnInit {
    settings = {
+     pager: {
+      display: true,
+      perPage: 5
+    },
     columns: {
       id: {
         title: 'ID',
         filter: false,
         editable: false
       },
-      name: {
+      assetName: {
         title: 'Name',
         filter: false
       },
@@ -40,32 +55,69 @@ export class AssetLocationComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.getGeoLocation();
+    this.createData();
   }
 
-  lat: number = 39.742043;
-  lng: number = -104.991531;
-  address : string;
+  assetInfo : assetInfo[] = [];
 
-  getGeoLocation() {
-  	
-	let geocoder = new google.maps.Geocoder();
-	let latlng = new google.maps.LatLng(this.lat, this.lng);
-	let request = {
-	latLng: latlng
-	};
+  //Create data for table
+  createData() {
+    this.assetService.getLocation().subscribe(
+      res => {
+        console.log(res);
+        var assetLocation : assetLocation = {
+           latitude : 3.0315555,
+           longitude : 101.4288433
+        };
 
-	geocoder.geocode(request, (results, status) => {
-		if (status == google.maps.GeocoderStatus.OK) {
-			if (results[0] != null) {
-				this.address = results[0].formatted_address;  //get address
-				console.log(this.address);  
-			} else {
-				alert("No address available");
-			}
-		}
-	});
+        var length = Object.keys(res).length; //length of object
+
+        for(var i = 0; i < length; i++){
+
+          if(res[i]['currentGPSLocation'])
+            assetLocation = JSON.parse(res[i]['currentGPSLocation']);
+
+          this.getGeoLocation(assetLocation.latitude, assetLocation.longitude) //Assign address based on lat, lng
+          this.assetInfo[i] = {
+            id: res[i]['id'],
+            assetName : res[i]['assetName'],
+            address : ""
+          }
+          
+        }
+
+        //this.source = new LocalDataSource(this.assetInfo);
+      },
+      err => {
+        console.log(err);
+      });
   }
+
+  getGeoLocation(lat : number, long : number) {
+  	let latlng = new google.maps.LatLng(lat, long);
+  	let request = {
+  	latLng: latlng
+  	};
+
+   this.codeLatLng(request, function(addr){
+      console.log(addr);
+    });
+
+  }
+
+  codeLatLng(request, callback){
+      let geocoder = new google.maps.Geocoder();
+      geocoder.geocode(request, (results, status) => {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0] != null) {
+          callback(results[0].formatted_address);  //get address
+        } else {
+          callback("No address available");
+        }
+      }
+    });
+  }
+
 
  //Search bar
   onSearch(query: string = '') {

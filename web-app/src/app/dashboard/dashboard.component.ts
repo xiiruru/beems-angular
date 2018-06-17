@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
       this.loadGraph();
       this.getTotalAssetCount();
+      this.checkAsset();
     }
 
     //Load data & draw the graph
@@ -91,6 +92,7 @@ export class DashboardComponent implements OnInit {
       //this.startAnimationForBarChart(MonthlyUpload);
     }
 
+    //Get total count of the asset from the user
     getTotalAssetCount() {
       this.assetService.getAssetCount().subscribe(res =>{
         console.log(res);
@@ -100,13 +102,30 @@ export class DashboardComponent implements OnInit {
       })
     }
 
+    //Check whether the asset is safe or suspicious
     checkAsset() {
       this.assetService.getAssetHash().subscribe(res =>{
     
-      var length = Object.keys(res).length; //length of object
+          var length = Object.keys(res).length; //length of object
 
-      for(var i =0; i < length; i++){
+          for(var i =0; i < length; i++){
+
+          let dbHash = res[i]['content_hash'];
           //Asset content hash from db & blockchain
+          this.assetService.getAssetBCHash(res[i]['id']).subscribe(
+            res => {
+               console.log(res);
+               let bcHash = res[0]['assetContentHash'];
+
+               if(dbHash == bcHash) { //If hash same, safe
+                 this.safeAsset ++;
+               }
+               else //else, suspicious
+                 this.suspAsset ++;
+            }, 
+            err => {
+               console.log(err);
+            });
       }
       
       }, err => {

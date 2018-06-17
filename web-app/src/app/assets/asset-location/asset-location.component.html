@@ -8,8 +8,7 @@
 						<p class="card-category">You can view your asset location here</p>
 					</div>
 					<div class="card-body">
-						{{ address }} <br>
-						<input #search class="search" type="text" placeholder="Search..." (change) ="onSearch(search.value)"><i class="searchico fa fa-search"></i>
+						<input #search class="search" type="text" placeholder="Search..." (change) ="onSearch(search.value)"><i class="searchico fa fa-search"></i><br><br>
 						<ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
 					</div>
 				</div>

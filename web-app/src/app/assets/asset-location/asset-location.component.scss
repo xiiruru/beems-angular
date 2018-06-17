@@ -13,3 +13,20 @@ td.action {
 .searchico {
 	padding-left: 1em;
 }
+
+:host /deep/ table th {
+background-color: #F44336;
+color: #fff;
+}
+
+:host /deep/ table th a{
+color: #fff;
+}
+
+:host /deep/ table tr:nth-child(even) {
+background-color: #DCDCDC;
+}
+
+:host /deep/ table tr:nth-child(odd) {
+background-color: #fff;
+}
