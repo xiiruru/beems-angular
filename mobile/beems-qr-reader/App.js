@@ -28,8 +28,8 @@ import {
 //Note2: Requires manual config every time for testing until we have standard servers.
 export default class App extends Component {
   config = {
-    apiUrl: "http://db2d8b24.ngrok.io/api/assets/",
-    blockchainUrl: "http://875369d5.ngrok.io/api/UpdateBEEMSAsset"
+    apiUrl: "http://4d7f88a2.ngrok.io/api/assets/",
+    blockchainUrl: "http://9ae643f9.ngrok.io/api/UpdateBEEMSAsset"
   }
 
   state = {
@@ -37,9 +37,14 @@ export default class App extends Component {
     hasLocationPermissions: false,
 
     lastScannedQRInfo: null,
-    locationResult: null,
+    locationCoords: null,
 
     asset: null,
+
+    locationLongLat: {
+      "longitude" : "",
+      "latitude": ""
+    },
 
     assetID: null,
     assetName: null,
@@ -77,7 +82,7 @@ export default class App extends Component {
   };
   _getLocationAsync = async () => {
     let location = await Location.getCurrentPositionAsync({});
-    this.setState({ locationResult: JSON.stringify(location) });
+    this.setState({ locationCoords: location.coords });
   };
 
   render() {
@@ -111,7 +116,7 @@ export default class App extends Component {
     Alert.alert(
       'Update?',
       "Asset " + this.state.lastScannedQRInfo +
-      " with " + this.state.locationResult + "?",
+      " with " + JSON.stringify(this.state.locationCoords) + "?",
       [
         {
           text: 'Yes',
@@ -157,7 +162,7 @@ export default class App extends Component {
           "assetID": this.state.assetID,
           "assetName": this.state.assetName,
           "assetContentHash": this.state.assetContentHash,
-          "currentGPSLocation": this.state.locationResult
+          "currentGPSLocation": JSON.stringify(this.state.locationLongLat)
         })
       });
     } catch (error) {
@@ -188,21 +193,25 @@ export default class App extends Component {
       )
     }
     else
-    {
+    {     
       //Set the state.
       this.setState({ assetID: this.state.lastScannedQRInfo });
-      this.setState({ assetName: this.state.asset.assetName });
+      this.state.locationLongLat.longitude = this.state.locationCoords.longitude;
+      this.state.locationLongLat.latitude = this.state.locationCoords.latitude;
+      //console.log("Lola: " + JSON.stringify(this.state.locationLongLat));
+
       this.state.asset.remark = "";
       this.state.asset.content_hash = "";
       this.state.asset.date_created = "2018-06-15 16:10:14";
-      console.log(JSON.stringify(this.state.asset));
+      console.log("Asset details: " + JSON.stringify(this.state.asset));
+      this.setState({ assetName: this.state.asset.assetName });
       this.setState({ assetContentHash: SHA1(JSON.stringify(this.state.asset)) });
-      //this.setState({ assetName: "supreme" });
-      //this.setState({ assetContentHash: "dis a lazy ngrok test boi" });
       console.log("SHA1: " + this.state.assetContentHash);
-
+      //this.setState({ assetName: "suprememe" });
+      //this.setState({ assetContentHash: "dis a lazy ngrok test boiv2.0" });
+      
       //Send to blockchain
-      //this._sendToBlockchain();
+      this._sendToBlockchain();
 
       //Alert OK when send is successfully done.
       Alert.alert(
