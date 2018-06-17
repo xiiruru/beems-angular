@@ -16,7 +16,7 @@ asset BEEMSAsset identified by id {
 
   o String assetName
   o String assetContentHash
-  o String currentGPSLocation
+  o String currentGPSLocation optional
 }
 
 transaction UpdateBEEMSAsset {
@@ -25,5 +25,5 @@ transaction UpdateBEEMSAsset {
   o String assetID
   o String assetName
   o String assetContentHash
-  o String currentGPSLocation
+  o String currentGPSLocation optional
 }
