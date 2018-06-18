@@ -13,6 +13,7 @@ export class AdminComponent implements OnInit {
   txRec : any[] = [];
 
   settings = {
+    hideSubHeader: false,
     pager: {
       display: true,
       perPage: 5

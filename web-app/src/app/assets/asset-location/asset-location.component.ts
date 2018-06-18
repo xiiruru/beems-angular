@@ -23,6 +23,7 @@ interface assetLocation {
 
 export class AssetLocationComponent implements OnInit {
    settings = {
+     hideSubHeader: false,
      pager: {
       display: true,
       perPage: 5
@@ -38,14 +39,15 @@ export class AssetLocationComponent implements OnInit {
         filter: false
       },
       address: {
-        title: 'Address',
+        title: 'Address (Latitude & Longitude)',
         filter: false
       }
     },
     actions: {
       add: false,
       edit: false,
-      delete: false
+      delete: false,
+      custom : [{ name: 'show', title:' <i class="material-icons">my_location</i> Geocode'}]
     }
   };
 
@@ -77,23 +79,56 @@ export class AssetLocationComponent implements OnInit {
           if(res[i]['currentGPSLocation'])
             assetLocation = JSON.parse(res[i]['currentGPSLocation']);
 
-          this.getGeoLocation(assetLocation.latitude, assetLocation.longitude) //Assign address based on lat, lng
           this.assetInfo[i] = {
             id: res[i]['id'],
             assetName : res[i]['assetName'],
-            address : ""
+            address : `${assetLocation.latitude} , ${assetLocation.longitude}`
           }
           
         }
 
-        //this.source = new LocalDataSource(this.assetInfo);
+        this.source = new LocalDataSource(this.assetInfo);
       },
       err => {
         console.log(err);
       });
   }
 
-  getGeoLocation(lat : number, long : number) {
+  geocodeAddr(event){
+    var address = event.data.address;
+    //console.log(event.data.address);
+
+    if (/\./.test(address)) {
+     //console.log(address);
+     let x = address.split(' , ');
+     console.log(x[0]);
+     console.log(x[1]);
+     this.reverseGeoCoding(event,+x[0],+x[1]);
+    }
+    else {
+      this.geoCoding(event, address);
+    }
+  }
+
+  //GOOGLE API - Geocoding (Address to Longitude & Latitude)
+  geoCoding(event, address : string) {
+    let geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode( {'address': address}, function(results, status) {
+
+    if (status == google.maps.GeocoderStatus.OK) {
+        var latitude = results[0].geometry.location.lat().toFixed(7);
+        var longitude = results[0].geometry.location.lng().toFixed(7);
+        //console.log(results);
+        event.data.address = `${latitude} , ${longitude}`;
+        event.source.update(event.data, event.data);
+        } 
+    }); 
+  }  
+
+
+  //GOOGLE API - Reverse Geocoding (Longitude & Latitude to Address)
+  reverseGeoCoding(event, lat : number, long : number) {
   	let latlng = new google.maps.LatLng(lat, long);
   	let request = {
   	latLng: latlng
@@ -101,6 +136,8 @@ export class AssetLocationComponent implements OnInit {
 
    this.codeLatLng(request, function(addr){
       console.log(addr);
+      event.data.address = addr;
+      event.source.update(event.data, event.data);
     });
 
   }

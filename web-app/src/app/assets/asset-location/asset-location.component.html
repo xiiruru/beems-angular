@@ -9,7 +9,8 @@
 					</div>
 					<div class="card-body">
 						<input #search class="search" type="text" placeholder="Search..." (change) ="onSearch(search.value)"><i class="searchico fa fa-search"></i><br><br>
-						<ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+						<p> Geocode - Convert between latitude & longitude and address </p>
+						<ng2-smart-table [settings]="settings" [source]="source" (custom)="geocodeAddr($event)"></ng2-smart-table>
 					</div>
 				</div>
 			</div>

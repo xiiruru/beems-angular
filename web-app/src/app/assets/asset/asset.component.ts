@@ -51,22 +51,7 @@ export class AssetComponent implements OnInit {
   //Submit asset form
   onSubmit() {
 
-    /*
-      var obj = {
-        id:1,
-        name:"test",
-        type:"test",
-        description:"test",
-        remark:"",
-        ownerID:1,
-        content_hash:"",
-        date_created:"2018-06-15 16:10:14"
-      }
-
-      console.log(crypto.SHA1(JSON.stringify(obj)).toString());
-  */
-      
-      var userID = localStorage.getItem('userID');
+  var userID = localStorage.getItem('userID');
       this.assetService.selectedAsset.ownerID = parseInt(userID);
 
       var d = new Date(); //Get date created

@@ -14,7 +14,7 @@ const httpOptions = {
 };
 
 const dbUrl = "http://localhost:3000/api/assets/"; //Database API Request URL
-const bcUrl = "http://53b85304.ngrok.io/api/"; //Blockchain API REquest URL
+const bcUrl = "http://f98ce69c.ngrok.io/api/"; //Blockchain API REquest URL
 
 @Injectable()
 export class AssetService {
@@ -31,26 +31,46 @@ export class AssetService {
     return this.http.get<Asset[]>(url, httpOptions);
   }
 
+  //HTTP GET request - Retrieve specific assets info from blockchain
+  getBCAsset(id : number){
+    return this.http.get(bcUrl + "BEEMSAsset/" + id, httpOptions); 
+  } 
+
   //HTTP POST request - Insert assets information
   insertAsset(asset : Asset) {
     var body = JSON.stringify(asset);
     console.log(body);
-    return this.http.post(dbUrl, body, httpOptions); //return observable 
+    return this.http.post(dbUrl, body, httpOptions); 
   }
 
   //HTTP POST request - Insert assets information in blockchain
   insertBCAsset(asset) {
-    return this.http.post(bcUrl + "BEEMSAsset", asset, httpOptions); //return observable 
+    return this.http.post(bcUrl + "BEEMSAsset", asset, httpOptions); 
   }
 
   //HTTP PUT request - Update asset information
   updateAsset(id : number, asset){
-    return this.http.put(dbUrl + id, asset, httpOptions);
+
+      return this.http.put(dbUrl + id, asset, httpOptions);
   }
 
   //HTTP PUT request - Update asset information in blockchain
-  updateBCAasset(){
+  updateBCAasset(id : number, asset){
 
+     this.getBCAsset(id).subscribe(res=>{
+      //Get GPS location from previous info
+      asset.currentGPSLocation = res['currentGPSLocation'];
+      this.http.put(bcUrl + "BEEMSAsset/" + id, asset, httpOptions).subscribe(res=>{
+        console.log(res);
+      },err=>{
+        console.log(err);
+      });
+
+    },
+    err=>{
+      console.log(err);
+    });
+    
   }
 
   //HTTP DELETE request - Delete asset information

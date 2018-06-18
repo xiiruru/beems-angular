@@ -5,7 +5,7 @@ import { Asset } from '../shared/asset';
 import { AssetService } from '../shared/asset.service';
 import { NotificationService } from '../../notifications/notification.service';
 
-import * as crypto from 'crypto-js';
+import * as crypto from 'crypto-js'; //CryptoJS lib 
 
 @Component({
   selector: 'app-asset-detail',
@@ -16,6 +16,7 @@ import * as crypto from 'crypto-js';
 export class AssetDetailComponent implements OnInit {
 
   settings = {
+    hideSubHeader: false,
     pager: {
       display: true,
       perPage: 5
@@ -53,7 +54,7 @@ export class AssetDetailComponent implements OnInit {
       confirmDelete: true
     },
     actions: {
-      add: false,
+      add: false
     }
   };
 
@@ -112,19 +113,34 @@ export class AssetDetailComponent implements OnInit {
   //Update record
   updateRecord(event) {
     var userID = localStorage.getItem('userID');
+
     var data = {
       id : event.newData.id,
       name : event.newData.name,
       type : event.newData.type,
       description : event.newData.description,
       remark : event.newData.remark,
-      ownerID : userID
+      ownerID : userID,
+      content_hash : '',
+      date_created : event.data.date_created
     }
 
+    var contentHash = crypto.SHA1(JSON.stringify(data)).toString(); //get hash of object
+    data.content_hash = contentHash;
     this.assetService.updateAsset(event.newData.id, data).subscribe(
       res => {
         console.log(res);
-        event.confirm.resolve(event.newData);
+
+         var obj = {
+             id: data.id,
+             assetName : data.name,
+             assetContentHash : data.content_hash,
+             currentGPSLocation : ""
+        }
+
+        //Update blockchain & save change to local data source
+        this.assetService.updateBCAasset(obj.id, obj);
+        event.confirm.resolve(event.newData); 
 
         this.notify.showNotification('bottom','right','info','<b>Asset Update<b>','Successfully update asset!');
         this.notify.notificationPush.push('Asset ID: ' + event.data.id + ' has been updated!');
