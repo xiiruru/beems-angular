@@ -123,14 +123,21 @@ export class DashboardComponent implements OnInit {
           for(var i =0; i < length; i++){
 
           //let dbHash = res[i]['content_hash'];         
-          var obj = JSON.stringify(res[i]);
-          obj['content_hash'] = '';
-          obj['date_created'] = this.pgFormatDate(obj['date_created']);
+          var obj = res[i];
+          var id = res[i]['id'];
+
+          //Set variable to follow format to hash
+          obj['id'] = `${id}`;
+          if(obj['remark'] == null) {
+            obj['remark'] = "";
+          }
+          obj['content_hash'] = "";
+          obj['date_created'] = this.pgFormatDate(res[i]['date_created']);
           
-          let contentHash = crypto.SHA1(obj).toString(); //get hash of object
+          let contentHash = crypto.SHA1(JSON.stringify(obj)).toString(); //get hash of object
           //Asset content hash from db & blockchain
-          console.log(obj);
-          this.assetService.getAssetBCHash(res[i]['id']).subscribe(
+          console.log(JSON.stringify(obj));
+          this.assetService.getAssetBCHash(id).subscribe(
             res => {
                let bcHash = res[0]['assetContentHash'];
                console.log(contentHash + " " + bcHash);

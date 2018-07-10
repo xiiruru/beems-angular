@@ -88,7 +88,7 @@ export class AssetService {
     return this.http.get<any>(url, httpOptions);
   }
 
-   //HTTP GET request - Retrieve assets field for content_hash
+   //HTTP GET request - Retrieve assets field 
   getAssetHash(){
     var ownerID = JSON.parse(localStorage.getItem('userID'));
     let url = dbUrl + "?filter[where][ownerID]=" + ownerID;

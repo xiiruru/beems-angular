@@ -62,8 +62,19 @@ export class AssetComponent implements OnInit {
         console.log(res);
 
         //add content hash to db
-        var contentHash = crypto.SHA1(JSON.stringify(res)).toString(); //get hash of object
+        var tmpObj = {
+           id : res['id'],
+           name : this.assetService.selectedAsset.name,
+           type :this.assetService.selectedAsset.type,
+           description : this.assetService.selectedAsset.description,
+           remark : this.assetService.selectedAsset.remark,
+           ownerID : res['ownerID'],
+           content_hash : '',
+           date_created : this.assetService.selectedAsset.date_created
+        }
+        var contentHash = crypto.SHA1(JSON.stringify(tmpObj)).toString(); //get hash of object
         console.log(contentHash);
+        console.log(JSON.stringify(tmpObj));
         this.assetService.selectedAsset.content_hash = contentHash;
 
         //Blockchain Object
