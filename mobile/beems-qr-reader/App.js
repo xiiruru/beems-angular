@@ -28,8 +28,8 @@ import {
 //Note2: Requires manual config every time for testing until we have standard servers.
 export default class App extends Component {
   config = {
-    apiUrl: "http://4d7f88a2.ngrok.io/api/assets/",
-    blockchainUrl: "http://9ae643f9.ngrok.io/api/UpdateBEEMSAsset"
+    apiUrl: "http://1e51332b.ngrok.io/api/assets/",
+    blockchainUrl: "https://f3ef269d.ngrok.io/api/UpdateBEEMSAsset"
   }
 
   state = {
@@ -42,7 +42,7 @@ export default class App extends Component {
     asset: null,
 
     locationLongLat: {
-      "longitude" : "",
+      "longitude": "",
       "latitude": ""
     },
 
@@ -151,6 +151,17 @@ export default class App extends Component {
     //console.log("Asset description test: " + this.state.asset.description);
   }
 
+  pgFormatDate = () => {
+    /* Via http://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date */
+    function zeroPad(d) {
+      return ("0" + d).slice(-2);
+    }
+  
+    var parsed = new Date(this.state.asset.date_created);
+  
+    return [[parsed.getUTCFullYear(), zeroPad(parsed.getMonth() + 1), zeroPad(parsed.getDate())].join('-'), [zeroPad(parsed.getHours()), zeroPad(parsed.getMinutes()), zeroPad(parsed.getSeconds())].join(':')].join(" ");
+  }
+
   _sendToBlockchain = async () => {
     try {
       await fetch(this.config.blockchainUrl, {
@@ -200,12 +211,12 @@ export default class App extends Component {
       this.state.locationLongLat.latitude = this.state.locationCoords.latitude;
       //console.log("Lola: " + JSON.stringify(this.state.locationLongLat));
 
-      this.state.asset.remark = "";
+      this.state.asset.id = this.state.asset.id.toString();
       this.state.asset.content_hash = "";
-      this.state.asset.date_created = "2018-06-15 16:10:14";
+      this.state.asset.date_created = this.pgFormatDate();
       console.log("Asset details: " + JSON.stringify(this.state.asset));
-      this.setState({ assetName: this.state.asset.assetName });
-      this.setState({ assetContentHash: SHA1(JSON.stringify(this.state.asset)) });
+      this.setState({ assetName: this.state.asset.name });
+      this.setState({ assetContentHash: SHA1(JSON.stringify(this.state.asset)).toString() });
       console.log("SHA1: " + this.state.assetContentHash);
       //this.setState({ assetName: "suprememe" });
       //this.setState({ assetContentHash: "dis a lazy ngrok test boiv2.0" });

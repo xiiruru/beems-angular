@@ -14,7 +14,7 @@ const httpOptions = {
 };
 
 const dbUrl = "http://1e51332b.ngrok.io/api/assets/"; //Database API Request URL
-const bcUrl = " https://f3ef269d.ngrok.io/api/"; //Blockchain API REquest URL
+const bcUrl = "https://f3ef269d.ngrok.io/api/"; //Blockchain API REquest URL
 
 @Injectable()
 export class AssetService {
