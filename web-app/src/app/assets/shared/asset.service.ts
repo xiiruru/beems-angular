@@ -13,14 +13,17 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const dbUrl = "http://localhost:3000/api/assets/"; //Database API Request URL
-const bcUrl = "http://f98ce69c.ngrok.io/api/"; //Blockchain API REquest URL
+const dbUrl = "http://1e51332b.ngrok.io/api/assets/"; //Database API Request URL
+const bcUrl = " https://f3ef269d.ngrok.io/api/"; //Blockchain API REquest URL
 
 @Injectable()
 export class AssetService {
 
   assets: Asset[] = [];
   selectedAsset : Asset = new Asset();
+  lat : number;
+  long : number;
+  address : string;
 
   constructor(private http: HttpClient, private _auth:AuthService) { }
 
@@ -88,7 +91,7 @@ export class AssetService {
    //HTTP GET request - Retrieve assets field for content_hash
   getAssetHash(){
     var ownerID = JSON.parse(localStorage.getItem('userID'));
-    let url = dbUrl + "?filter[fields][id]=true&filter[fields][content_hash]=true&filter[where][ownerID]=" + ownerID;
+    let url = dbUrl + "?filter[where][ownerID]=" + ownerID;
     return this.http.get<any>(url, httpOptions);
   }
 
@@ -100,7 +103,7 @@ export class AssetService {
 
   //HTTP GET request - Retrieve assets instances count
   getAssetCount() {
-      let url = "http://localhost:3000/api/assets/count";
+      let url = dbUrl + "count";
       return this.http.get(url, httpOptions);
   }
 

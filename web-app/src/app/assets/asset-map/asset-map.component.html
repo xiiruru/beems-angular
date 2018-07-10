@@ -1,0 +1,27 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header card-header-danger">
+						<h4 class="card-title ">Google Map</h4>
+						<p class="card-category">Google Map API</p>
+					</div>
+					<div class="card-body">
+						<agm-map 
+						[latitude]="assetService.lat" 
+						[longitude]="assetService.long" 
+						[fitBounds]="latlngBounds" 
+						[zoom]="14">
+							<agm-marker 
+							[latitude]="assetService.lat" 
+							[longitude]="assetService.long">
+							</agm-marker>
+						</agm-map><br>
+						<a style="cursor: pointer; color:blue" (click)="goBack()"> <- Back </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

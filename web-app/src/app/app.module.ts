@@ -24,6 +24,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { NotificationService } from './notifications/notification.service';
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -40,7 +41,7 @@ import { NotificationService } from './notifications/notification.service';
     LoginComponent,
     SignupComponent,
     PasswordResetComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
   ],
   providers: [NotificationService],
   bootstrap: [AppComponent]

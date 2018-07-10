@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AssetService } from '../assets/shared/asset.service';
 import * as Chartist from 'chartist';
+import * as crypto from 'crypto-js'; //CryptoJS lib 
 
 @Component({
   selector: 'app-dashboard',
@@ -102,6 +103,17 @@ export class DashboardComponent implements OnInit {
       })
     }
 
+    pgFormatDate(date) {
+    /* Via http://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date */
+     function zeroPad(d) {
+        return ("0" + d).slice(-2);
+      }
+
+    var parsed = new Date(date)
+
+    return [[parsed.getUTCFullYear(), zeroPad(parsed.getMonth() + 1), zeroPad(parsed.getDate())].join('-'), [zeroPad(parsed.getHours()), zeroPad(parsed.getMinutes()), zeroPad(parsed.getSeconds())].join(':')].join(" ");
+    }
+
     //Check whether the asset is safe or suspicious
     checkAsset() {
       this.assetService.getAssetHash().subscribe(res =>{
@@ -110,14 +122,19 @@ export class DashboardComponent implements OnInit {
 
           for(var i =0; i < length; i++){
 
-          let dbHash = res[i]['content_hash'];
+          //let dbHash = res[i]['content_hash'];         
+          var obj = JSON.stringify(res[i]);
+          obj['content_hash'] = '';
+          obj['date_created'] = this.pgFormatDate(obj['date_created']);
+          
+          let contentHash = crypto.SHA1(obj).toString(); //get hash of object
           //Asset content hash from db & blockchain
+          console.log(obj);
           this.assetService.getAssetBCHash(res[i]['id']).subscribe(
             res => {
-               console.log(res);
                let bcHash = res[0]['assetContentHash'];
-
-               if(dbHash == bcHash) { //If hash same, safe
+               console.log(contentHash + " " + bcHash);
+               if(contentHash == bcHash) { //If hash same, safe
                  this.safeAsset ++;
                }
                else //else, suspicious

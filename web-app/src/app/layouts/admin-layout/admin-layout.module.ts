@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { AgmCoreModule } from '@agm/core';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
@@ -12,6 +13,7 @@ import { AdminComponent } from '../../admin/admin.component';
 import { AssetComponent } from '../../assets/asset/asset.component';
 import { AssetDetailComponent } from '../../assets/asset-detail/asset-detail.component';
 import { AssetLocationComponent } from '../../assets/asset-location/asset-location.component';
+import { AssetMapComponent } from '../../assets/asset-map/asset-map.component';
 
 //Service
 import { AssetService } from '../../assets/shared/asset.service';
@@ -27,6 +29,9 @@ import {
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAYZ8CgH5a3oRDujw80iR-VRD08x3c3xGI'
+    }),
     FormsModule,
     MatButtonModule,
     MatRippleModule,
@@ -41,7 +46,8 @@ import {
     AdminComponent,
     AssetComponent,
     AssetDetailComponent,
-    AssetLocationComponent
+    AssetLocationComponent,
+    AssetMapComponent
   ],
    providers: [AssetService]
 })
